@@ -181,7 +181,7 @@ div#content {
                 -webkit-border-radius:10px;
                 -ms-border-radius:10px;
                 border-radius:10px;
-                background-image: url('../../cubicador/img/fondo_login.jpg');
+                background-image: url('../img/fondo_login.jpg');
 }
 
         div#documentos {

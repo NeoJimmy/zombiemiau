@@ -17,9 +17,9 @@
     <div id="content">
         <div id="main">
             <h2></h2>
-            <br></br><br></br><br></br>
+            <br><br><br><br><br><br>
         </div>
-        <br></br>
+        <br><br>
         <div id="sidebar">
                 
                 <h2>Sesi&oacute;n</h2>
@@ -30,7 +30,7 @@
                     unset($_SESSION['error']);
                 }
 
-                // Si hay sesiÃ³n y se estÃ¡ logueado...
+                // Si hay sesiÃƒÂ³n y se estÃƒÂ¡ logueado...
                 if ( isset($_SESSION['usuario']) ) :
                   // Mostrar enlace para log-out
                   echo '<h2>', $_SESSION['usuario']['nombre'], '</h2> ';
@@ -46,7 +46,7 @@
                      <label for="login_password">Contrase&ntilde;a:</label>
                      <input name="password" id="login_password" type="password" value="">
                     </p>
-                    <p><input class="boton" type="submit" value="Entrar"></input></p>
+                    <p><input class="boton" type="submit" value="Entrar"></p>
                 </form>
                <?php endif; ?>
             
