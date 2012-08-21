@@ -53,7 +53,6 @@
 			<li class="dir">Acciones de Entel<br><br>
 				<ul>
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin')) :?>
-					<li><a href="http://localhost/cmp/ordendetrabajo/cambiarestado.php">Cambiar estado de Orden</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/generar_evaluaciontecnica.php">Generar evaluaci&oacute;n t&eacute;cnica</a></li>
 					<?php endif; ?>
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_tecnico'):?>
@@ -64,12 +63,13 @@
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/generar_ott.php">Generar OTT</a></li>
 					<?php endif; ?>
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin')) :?>
+					<li><a href="http://localhost/cmp/ordendetrabajo/cambiarestado.php">Cambiar estado de Orden</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/actualizar_ejecucion.php">Actualizar ejecuci&oacute;n</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/cerrar_orden.php">Cerrar Orden</a></li>
 					<?php endif; ?>
 				</ul>
 			</li>
-			<?php endif ?>
+			<?php endif; ?>
 			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_tecnico'):?>
 			<li class="dir">B&uacute;squeda<br><br>
 				<ul>

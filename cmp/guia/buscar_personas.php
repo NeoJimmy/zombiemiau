@@ -38,7 +38,7 @@ mysql_query("SET NAMES 'utf8'");
 <h2>Buscar personas</h2>
 <br>
 Ingrese algún patrón a buscar:
-<p></p><form action="#">
+<p><form action="#">
     <fieldset>
         <input type="text" name="search" value="" id="id_busqueda" placeholder="Buscar" autofocus></input>
     </fieldset>
