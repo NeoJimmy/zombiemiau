@@ -55,12 +55,12 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 
     ?>
 
+    <h2>Nuevo perfil</h2>
     <form id="myform"  action='' method='POST'>
-    <br />
     <p><b>Nombre del perfil:</b><br /><input type='text' name='nombre' class='required'/>
     <p><b>Descripci&oacute;n:</b><br /><input  type='text' name='descripcion' class='required' />
     <p>
-    <input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar perfil' /><input type='hidden' value='1' name='submitted' /></p>
+    <input class='submit btn btn-primary' type='submit' value='Agregar perfil' /><input type='hidden' value='1' name='submitted' /></p>
     </form>
 
 </div>

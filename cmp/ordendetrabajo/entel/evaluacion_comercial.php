@@ -27,9 +27,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Revisar &oacute;rdenes de trabajo en evaluaci&oacute;n comercial</h2>
-<br>
+
 <form id='form' action='' method='POST' enctype="multipart/form-data">
     <p><b>Acci&oacute;n:</b><br>
     <select name="accion">
@@ -40,7 +40,7 @@ mysql_query("SET NAMES 'utf8'");
     <p><b>Adjuntar evaluaci&oacute;n t&eacute;cnica:</b><br>
     <input name="file" type="file"></p>
      <p>(archivo con extensi&oacute;n *.xlsx o *.xls)
-    <p><input type='submit' value='Guardar'><input type='hidden' value='1' name='submitted'>
+    <p><input type='submit' value='Guardar' class='btn btn-primary'><input type='hidden' value='1' name='submitted'>
 <?php
 
 if (isset($_POST['submitted'])) {
@@ -129,9 +129,9 @@ if (isset($_POST['submitted'])) {
      if ( $rows == 0) : ?>
     	<p>No hay ordenes de trabajo por revisar.</p>
 <?php else : ?>
-	<h4>Seleccione una orden de trabajo a modificar</h4>
-	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+	<h3>Seleccione una orden de trabajo a modificar</h3>
+
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">sel</th>
@@ -175,9 +175,8 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-<br>
-<br>
-   
+
+
 <?php endif; ?>
     </div><!-- overflow -->
 </form>

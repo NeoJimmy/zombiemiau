@@ -89,11 +89,11 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     echo "<a href='admin_datostecnicos.php'>Volver a Agenda</a><br><br>";
     }
     ?>
-    <br><br><br>
-    <a href="admin_datostecnicos.php">volver</a>
-    <br><br>
+
+    <a href="admin_datostecnicos.php" class="btn">volver</a>
+
     <h2>Nuevo registro de datos t&eacute;cnicos</h2>
-    <br>
+
     <form id="myform"  action='' method='POST'>
     <p><label><b>anexo:</b></label><input type='text' name='anexo' class='required'><br>
     <p><label><b>tipo:</b></label>
@@ -140,7 +140,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     <p><label><b>mac:</b></label><input type='text' name='mac' class='required'><br>
     <p><label><b>switch-puerta:</b></label><input type='text' name='switch_puerta' class='required'><br>
 	<br>
-    <p><input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar Registro'><input type='hidden' value='1' name='submitted'>
+    <p class="espacio-submit"><input class='submit btn btn-primary' type='submit' value='Agregar Registro'><input type='hidden' value='1' name='submitted'>
     </form>
 
 </div>

@@ -65,8 +65,7 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `tipo_ot` WHERE `idtipo_ot
 <form id='formEditar' action='' method='POST'>
 	<p><label><b>tipo:</b></label><input type='text' name='tipo' value='<?= stripslashes($row['tipo']) ?>' class='required'><br>
 	<p><label><b>subtipo:</b></label><input type='text' name='subtipo' value='<?= stripslashes($row['subtipo']) ?>' class='required'><br>
-    <br>
-<p><input type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
+<p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
 <? } ?>

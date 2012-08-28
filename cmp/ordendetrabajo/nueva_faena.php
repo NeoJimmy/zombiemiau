@@ -57,16 +57,13 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     }
 
     ?>
-    <br><br><br>
-    <a href="admin_faenas.php">volver</a>
-    <br><br>
+    <a class="btn" href="admin_faenas.php">volver</a>
     <h2>Nuevo registro</h2>
     <br>
     <form id="myform"  action='' method='POST'>
     <p><label><b>ciudad:</b></label><input type='text' name='ciudad' class='required'><br>
     <p><label><b>faena:</b></label><input type='text' name='faena' class='required '><br>
-	<br>
-    <p><input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar Registro'><input type='hidden' value='1' name='submitted'>
+    <p class="espacio-submit"><input class='submit btn btn-primary' type='submit' value='Agregar Registro'><input type='hidden' value='1' name='submitted'>
     </form>
 </div>
 

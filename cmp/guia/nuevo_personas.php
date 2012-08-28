@@ -58,9 +58,9 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     }
 
     ?>
-    <br><br><br>
-    <a href="admin_personas.php">volver</a>
-    <br><br>
+
+    <a class="btn" href="admin_personas.php">volver</a>
+
     <h2>Nuevo registro</h2>
 
     <form id="myform"  action='' method='POST'>
@@ -73,8 +73,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     <p><b>localidad:</b><br><input type='text' name='localidad' class='required'></input>
     <p><b>centro de costo:</b><br><input type='text' name='centro_de_costo' class='required'></input>
     </fieldset>
-	<br>
-    <p><input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar Registro'></input><input type='hidden' value='1' name='submitted'></input>
+    <p><input class='submit btn btn-primary' type='submit' value='Agregar Registro'></input><input type='hidden' value='1' name='submitted'></input>
     </form>
 
 </div>

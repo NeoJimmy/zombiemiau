@@ -28,6 +28,10 @@
 	});
   </script>
 
+    <!--necesario para tabs y UI-->
+    <link type="text/css" href="http://localhost/cmp/css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="http://localhost/cmp/js/jquery-ui-1.8.9.custom.min.js"></script>
+
 </head>
 <body>
 
@@ -50,17 +54,16 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>B&uacute;squeda de Orden de trabajo por Fecha</h2>
-<br>
+
 
 <form id='form' action='' method='POST'>
-	<p><label for="from">Desde</label><br>
+	<p><label for="from">Desde</label>
     <input type="text" id="from" name="from" value="<?php echo (isset($_POST['from'])) ? $_POST['from'] : NULL ?>"></input><br></p>
-    <p><label for="to">hasta</label><br>
-    <input type="text" id="to" name="to" value="<?php echo (isset($_POST['to'])) ? $_POST['to'] : NULL ?>"></input><br></p>
-    <p><input type='submit' value='Buscar'></input><input type='hidden' value='1' name='submitted'></input>
-	<br>
+    <p><label for="to">hasta</label>
+    <input type="text" id="to" name="to" value="<?php echo (isset($_POST['to'])) ? $_POST['to'] : NULL ?>"></input></p>
+    <p class="espacio-submit"><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
 </form>
 
 <?php
@@ -84,7 +87,7 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h4>Orden de trabajo</h4>
 	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
    		<th scope="col">Nro OT</th>
@@ -126,12 +129,11 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-<br>
-<br>
+
    
 <?php endif; ?>
     </div><!-- overflow -->
-    <input type="button" value="Descargar Reporte" onclick="location.href='reporte_fecha.php?from=<?php echo $_POST['from']."&to=".$_POST['to']; ?>'">
+    <input class="btn" type="button" value="Descargar Reporte" onclick="location.href='reporte_fecha.php?from=<?php echo $_POST['from']."&to=".$_POST['to']; ?>'">
 <?php
 }//submitted
 ?>

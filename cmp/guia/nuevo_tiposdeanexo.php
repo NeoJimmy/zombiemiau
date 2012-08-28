@@ -58,16 +58,15 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     }
 
     ?>
-    <br><br><br>
-    <a href="admin_tiposdeanexo.php">volver</a>
-    <br><br>
+
+    <p><a class="btn" href="admin_tiposdeanexo.php">volver</a></p>
+
     <h2>Nuevo registro</h2>
 
     <form id="myform"  action='' method='POST'>
-    <p><b>tipo:</b><br><input type='text' name='tipo' class='required'>
-    <p><b>subtipo:</b><br><input type='text' name='subtipo' class='required '>
-	<br>
-    <p><input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar Registro'></input><input type='hidden' value='1' name='submitted'></input>
+    <p><label>Tipo:</label><input type='text' name='tipo' class='required'>
+    <p><label>Subtipo:</label><input type='text' name='subtipo' class='required '>
+    <p class='espacio-submit'><input class='btn btn-primary' type='submit' value='Agregar Registro'></input><input type='hidden' value='1' name='submitted'></input>
     </form>
 </div>
 

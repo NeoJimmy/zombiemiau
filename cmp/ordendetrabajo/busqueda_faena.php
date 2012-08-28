@@ -55,9 +55,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>B&uacute;squeda de Orden de trabajo por Faena</h2>
-<br>
+
 
 <form id='form' action='' method='POST'>
 	<p><b>Ciudad:</b><br>
@@ -95,8 +95,7 @@ mysql_query("SET NAMES 'utf8'");
 	    }
 	?>
 	</select></p>
-	<br>
-	<p><input type='submit' value='Buscar'></input><input type='hidden' value='1' name='submitted'></input>
+	<p><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
 </form>
 
 <?php
@@ -123,7 +122,7 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h4>Orden de trabajo</h4>
 	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
    		<th scope="col">Nro OT</th>
@@ -172,7 +171,7 @@ if (isset($_POST['submitted'])) {
    
 <?php endif; ?>
     </div><!-- overflow -->
-    <input type="button" value="Descargar Reporte" onclick="location.href='reporte_faena.php?ciudad=<?php echo $_POST['ciudad']."&faena=".$_POST['faena']; ?>'">    
+    <input class="btn" type="button" value="Descargar Reporte" onclick="location.href='reporte_faena.php?ciudad=<?php echo $_POST['ciudad']."&faena=".$_POST['faena']; ?>'">    
 <?php
 }//submitted
 ?>

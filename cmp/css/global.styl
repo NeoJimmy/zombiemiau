@@ -1,0 +1,245 @@
+
+
+radius()
+	-webkit-border-radius arguments
+	-moz-border-radius arguments
+	border-radius arguments
+
+transition()
+	-webkit-transition arguments
+	-moz-transition arguments
+	transition arguments
+
+transform()
+	-webkit-transform arguments
+	-moz-transform arguments
+	transform arguments
+
+transform-origin()
+	-webkit-transform-origin arguments
+	-moz-transform-origin arguments
+	transform-origin arguments	
+
+animation()
+	-webkit-animation arguments
+	-moz-animation arguments
+	-ms-animation arguments
+	-o-animation arguments
+	animation arguments
+
+
+
+@keyframes fadein
+	0%
+		opacity 0
+	100%
+		opacity 1
+
+
+
+body
+	padding 0 40px 0
+
+h2
+	margin-bottom 10px
+
+label
+	display inline-block
+	width 120px
+	text-align right
+	padding-right 20px
+	padding-top 0
+	vertical-align 3px
+
+
+.espacio-submit
+	padding-left 140px
+
+
+#footer
+	text-align center
+	margin 40px -40px 0
+	.navbar-inner
+		padding 20px 40px 0px
+		border-radius 0
+
+#header
+	background #fff url(../images/lwis.celebrity/pattern1.png) 0 0 repeat-x
+	height 92px
+	margin 0px -40px 20px
+	padding 20px 0 0
+	box-shadow 0 0 20px #CCC
+	h1
+		margin 0 0 15px
+		padding 0 35px
+		font-size 28px
+	img
+		vertical-align 0px
+
+
+
+color1 = #0073AE
+
+
+/* DROPDOWN CSS */
+
+ul.dropdown
+	background-color #222
+	color white
+
+	li a, li.dir
+		padding 10px 40px
+		display block
+		color white
+
+	li.hover,
+	li:hover,
+	li a:hover
+		background-color color1
+		color white
+		text-decoration none
+
+	ul
+		background-color color1
+		background -webkit-linear-gradient(color1,  darken(color1,20%))
+		background -moz-linear-gradient(color1,  darken(color1,20%))
+		background -o-linear-gradient(color1,  darken(color1,20%))
+
+		li a
+			color white
+			padding 0
+			border 0
+			color white
+
+		li.dir
+			margin 20px 1px 20px 0
+			padding 0
+			border 0
+			&:hover
+				background-color darken(color1,20%)
+
+			strong
+				background-color darken(color1,20%)
+				display block
+				padding 10px 20px
+				text-transform uppercase 
+			ul
+				background transparent
+				li
+					a
+						display block
+						padding 5px 20px
+						&:hover
+							background-color white
+							color black
+
+
+
+
+/* DROPDOWN CSS CORE */
+
+ul.dropdown,
+ul.dropdown li,
+ul.dropdown ul {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+}
+
+ul.dropdown {
+ position: relative;
+ z-index: 597;
+ float: left;
+}
+
+ul.dropdown li {
+ float: left;
+ line-height: 1.3em;
+ vertical-align: middle;
+ zoom: 1;
+}
+
+ul.dropdown li.hover,
+ul.dropdown li:hover {
+ position: relative;
+ z-index: 599;
+ cursor: default;
+}
+
+ul.dropdown ul {
+ visibility: hidden;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ z-index: 598;
+ width: 100%;
+}
+
+ul.dropdown ul li {
+ float: none;
+}
+
+ul.dropdown ul ul {
+ top: 1px;
+ left: 99%;
+}
+
+ul.dropdown li:hover > ul {
+ visibility: visible;
+}
+
+
+
+ul.dropdown-linear {
+ width: 100%;
+}
+
+ul.dropdown-linear ul li {
+ float: left;
+}
+
+ul.dropdown-linear li.hover,
+ul.dropdown-linear li:hover {
+ position: static;
+}
+
+ul.dropdown-linear ul ul {
+ display: none !important;
+}
+
+
+
+ul.dropdown-columnar ul li {
+ position: static;
+ width: 240px;
+}
+
+ul.dropdown-columnar ul ul {
+ display: block !important;
+ position: static;
+ width: auto !important;
+}
+
+ul.dropdown-columnar ul ul li {
+ float: none;
+}
+
+ul.dropdown-columnar ul ul ul {
+ display: none;
+}
+
+ul.dropdown-columnar li.hover ul,
+ul.dropdown-columnar li:hover ul {
+ visibility: visible !important;
+}
+
+
+
+
+
+
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+p { clear: both; }
+
+
+

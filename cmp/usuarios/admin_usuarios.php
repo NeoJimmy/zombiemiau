@@ -72,19 +72,14 @@ $rows = mysql_num_rows($result);
 
       if ( $rows == 0): ?>
         <p>No hay registros en la base de datos</p>
-		<ul>
-        	<p><a href="nuevo.php">Nuevo usuario</a></p>
-    	</ul >
+    	<p><a class="btn btn-success" href="nuevo.php">Nuevo usuario</a></p>
 <?php 
 	else: 
 ?>
-		<br>
-	    <ul>
-	        <a href="nuevo.php">Nuevo usuario</a>
-	    </ul>
-	    <br>
+	    <p><a class="btn btn-success" href="nuevo.php">Nuevo usuario</a></p>
+
 	   <div style="overflow-x: auto; overflow-y: hidden;">
-	    <table class="ui-widget ui-widget-content">
+	    <table class="ui-widget ui-widget-content table table-striped table-bordered">
 	      <thead class="ui-widget-header">
 	      <tr>
 		      <th scope="col">rut</th>

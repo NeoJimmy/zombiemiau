@@ -28,9 +28,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Personas</h2>
-<br>
+
 <?php
 
 $sql= "SELECT `anexo`, `nombre`, `apellido`, `unidad`, `localidad`, `centro_de_costo`
@@ -48,8 +48,7 @@ $rows = mysql_num_rows($result);
 
 <?php else : ?>
 
-    <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content">
+    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">anexo</th>
@@ -83,7 +82,7 @@ $rows = mysql_num_rows($result);
 <?php endif; ?>
     </div>
 <?php if($rows) :?>
-<br><br>
+
 <?php endif;?>
 
 </div>

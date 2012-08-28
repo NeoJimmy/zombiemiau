@@ -34,15 +34,15 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Buscar Lugar o cargo</h2>
-<br>
-Ingrese algún patrón a buscar:
-<p></p><form action="#">
+
+<p>Ingrese algún patrón a buscar:
+<form action="#">
     <fieldset>
         <input type="text" name="search" value="" id="id_busqueda" placeholder="Buscar" autofocus></input>
     </fieldset>
-</form></p>
+</form>
 
 <?php
 
@@ -61,8 +61,7 @@ $rows = mysql_num_rows($result);
 
 <?php else : ?>
 
-    <br>
-    <table id="tabla_lugares" class="ui-widget ui-widget-content">
+    <table id="tabla_lugares" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">anexo</th>
@@ -96,7 +95,7 @@ $rows = mysql_num_rows($result);
 <?php endif; ?>
     </div>
 <?php if($rows) :?>
-<br><br>
+
 <?php endif;?>
 
 </div>

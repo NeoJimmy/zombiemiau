@@ -27,9 +27,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Generar evaluaci&oacute;n t&eacute;cnica</h2>
-<br>
+
 <form id='form' action='' method='POST' enctype="multipart/form-data">
     <p><b>Adjuntar evaluaci&oacute;n t&eacute;cnica:</b><br>
     <input name="file" type="file"></input></p>
@@ -51,7 +51,7 @@ mysql_query("SET NAMES 'utf8'");
          }
     ?>
     </select></p>
-    <p><input type='submit' value='Guardar'></input><input type='hidden' value='1' name='submitted'></input>
+    <p><input type='submit' value='Guardar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
 <?php
 
 if (isset($_POST['submitted'])) {
@@ -133,9 +133,10 @@ if (isset($_POST['submitted'])) {
      if ( $rows == 0) : ?>
     	<p>No se encontraron &oacute;rdenes de trabajo validadas por CMP.</p>
 <?php else : ?>
-	<h4>Seleccione una orden de trabajo a modificar</h4>
-	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+
+	<h3>Seleccione una orden de trabajo a modificar</h3>
+
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">sel</th>

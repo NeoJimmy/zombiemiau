@@ -48,9 +48,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Administrar Gu&iacute;a de datos t&eacute;cnicos</h2>
-<br>
+
 <?php
 
 // Eliminar elemento
@@ -65,9 +65,9 @@ mysql_query("SET NAMES 'utf8'");
 <div id="dialog-confirm" title="Eliminar datos t&eacute;cnicos:">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>&iquest;Desea eliminar este elemento?</p>
 </div>
-<ul>
-        <a href="nuevo_datostecnicos.php">Nuevo registro</a>
-</ul>
+<p>
+        <a class="btn btn-success" href="nuevo_datostecnicos.php">Nuevo registro</a>
+</p>
 <?php
 
 $sql= "SELECT *
@@ -82,7 +82,7 @@ $rows = mysql_num_rows($result);
     <p>No se encontraron registros con los datos ingresados.</p>
 <?php else : ?>
     <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content">
+    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">anexo</th>
@@ -139,7 +139,7 @@ $rows = mysql_num_rows($result);
 <?php endif; ?>
     </div>
 <?php if($rows) :?>
-<br><br>
+
 <?php endif;?>
 
 </div>

@@ -70,11 +70,11 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 
     <form id="myform"  action='' method='POST'>
     <br>
-    <p><b>rut:</b><br><input type='text' name='rut' class='required rut'>
-    <p><b>nombre:</b><br><input type='text' name='nombre_us' class='required'>
-    <p><b>contrase&ntilde;a:</b><br><input type='text' name='contrasena' class='required'>
-    <p><b>email:</b><br><input type='text' name='email' class='required email'>
-    <p><b>perfil:</b><br>
+    <p><label>Rut:</label> <input type='text' name='rut' class='required rut'>
+    <p><label>Nombre:</label> <input type='text' name='nombre_us' class='required'>
+    <p><label>Contrase&ntilde;a:</label> <input type='text' name='contrasena' class='required'>
+    <p><label>Email:</label> <input type='text' name='email' class='required email'>
+    <p><label>Perfil:</label>
     <select name="perfil">
     <?php
         $query="SELECT idperfil, nombre FROM perfil ORDER BY nombre";
@@ -89,7 +89,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
     ?>
     </select>
     <p>
-    <input class='submit' style="position: absolute; left: -103px;" type='submit' value='Agregar usuario'></input><input type='hidden' value='1' name='submitted'></input></p>
+    <input class='btn btn-primary' style="position: absolute; left: -103px;" type='submit' value='Agregar usuario'></input><input type='hidden' value='1' name='submitted'></input></p>
     </form>
 
 </div>

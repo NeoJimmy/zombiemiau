@@ -54,7 +54,7 @@ mysql_query("SET NAMES 'utf8'");
 <div id="dialog-confirm" title="Eliminar perfil:">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>&iquest;Desea eliminar este perfil?</p>
 </div>
-<?php  
+<?php
 
 //listar
 $query = "SELECT *
@@ -67,12 +67,11 @@ $rows = mysql_num_rows($result);
         <p>No hay registros en la base de datos</p>
 <?php else : ?>
 	<br>
-    <ul>
-        <a href="nuevo.php">Nuevo perfil</a>
-    </ul>
+    <p><a class="btn btn-success" href="nuevo.php">Nuevo perfil</a></p>
+
    <div style="overflow-x: auto; overflow-y: hidden;">
 	<br>
-    <table class="ui-widget ui-widget-content">
+    <table class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       <th scope="col" >nombre</th>

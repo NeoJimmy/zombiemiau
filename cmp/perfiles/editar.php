@@ -65,6 +65,7 @@ echo "<a href='admin_perfiles.php' title='Administrar Perfiles'>volver a Perfile
 $row = mysql_fetch_array ( mysql_query("SELECT * FROM `perfil` WHERE `idperfil` = '$idperfil' "));
 ?>
 
+<h2>Editar perfil</h2>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
 <br />
@@ -72,7 +73,7 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `perfil` WHERE `idperfil` 
 <p><b>Descripci&oacute;n</b><br /><textarea name="descripcion" rows="5" cols="40" class="required">
 <?= stripslashes($row['descripcion']) ?>
 </textarea>
-<p><input type='submit' value='Editar' /><input type='hidden' value='1' name='submitted' />
+<p><input type='submit' class="btn btn-primary" value='Editar' /><input type='hidden' value='1' name='submitted' />
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
 <? } ?>

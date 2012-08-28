@@ -44,9 +44,9 @@ $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config
 mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 ?>
-<br>
+
 <h2>Administrar tipos de anexo</h2>
-<br>
+
 <?php
 // Eliminar elemento
   if ( isset( $_GET['delete'] ) )
@@ -60,9 +60,9 @@ mysql_query("SET NAMES 'utf8'");
 <div id="dialog-confirm" title="Eliminar tipo de anexo:">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>&iquest;Desea eliminar este elemento?</p>
 </div>
-<ul>
-        <a href="nuevo_tiposdeanexo.php">Nuevo registro</a>
-</ul>
+<p>
+        <a class="btn btn-success" href="nuevo_tiposdeanexo.php">Nuevo registro</a>
+</p>
 <?php
 
 $sql= "SELECT *
@@ -77,7 +77,7 @@ $rows = mysql_num_rows($result);
     <p>No se encontraron registros con los datos ingresados.</p>
 <?php else : ?>
     <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content">
+    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
 		<th scope="col">tipo</th>
@@ -116,7 +116,7 @@ $rows = mysql_num_rows($result);
 <?php endif; ?>
     </div>
 <?php if($rows) :?>
-<br><br>
+
 <?php endif;?>
 
 </div>

@@ -27,9 +27,8 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Cambiar estado de Orden de trabajo</h2>
-<br>
 
 <form id='form' action='' method='POST'>
     <table id="clear" style="width:100%;">
@@ -55,7 +54,7 @@ mysql_query("SET NAMES 'utf8'");
 			        }
 			    ?>
 			    </select></p>
-			    <p><input type='submit' value='Buscar'></input><input type='hidden' value='1' name='submitted'></input>
+			    <p><input type='submit' value='Buscar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
 		    </td>
 		    <td id="clear">
 				<p><b>Cambiar a nuevo estado:</b><br>
@@ -75,7 +74,7 @@ mysql_query("SET NAMES 'utf8'");
 			         }
 			    ?>
 			    </select></p>
-			    <p><input type='submit' value='Cambiar'></input><input type='hidden' value='1' name='submitted'></input>
+			    <p><input type='submit' value='Cambiar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
 		    </td>
     	</tr>
     	</tbody>
@@ -230,7 +229,7 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-    <br>
+
    
 <?php endif; ?>
     </div><!-- overflow -->

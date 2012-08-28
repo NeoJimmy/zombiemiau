@@ -137,13 +137,13 @@ if ($row[0] != NULL) {
     }
 
 ?>
-<br>
-<h4 class="ui-widget">Orden de trabajo Nº <?php echo $id;?></h4>
+
+<h2>Orden de trabajo Nº <?php echo $id;?></h2>
 		<form id="solicitud" action='' method='POST'>
-		<br>
+
 		<fieldset class="ui-widget ui-state-default ui-corner-all">
 		<legend class="ui-widget">Datos del solicitante</legend>
-		    <br>
+			<br>
 		    <p><label>Nombre:</label><input name="nombre" type="text" size="37" class="required ui-widget ui-corner-all"></p>
 		    <p><label>Apellido:</label><input name="apellido" type="text" size="37" class="required ui-widget ui-corner-all"></p>
 		    <p><label>Anexo:</label><input name="anexo" type="text" size="37" class="required ui-widget ui-corner-all"></p>
@@ -216,7 +216,7 @@ if ($row[0] != NULL) {
 		</fieldset>
 		<br>
 		<div class="demo">
-		<p><input type='submit' value='Crear OT' class="ui-button ui-widget ui-state-default ui-corner-all"><input type='hidden' value='1' name='submitted'>
+		<p class="espacio-submit"><input type='submit' value='Crear OT' class="btn btn-primary"><input type='hidden' value='1' name='submitted'>
 		</div>
 </div><!--content-->
 

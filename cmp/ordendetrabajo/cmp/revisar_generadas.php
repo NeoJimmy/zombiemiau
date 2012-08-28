@@ -27,20 +27,20 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Revisar &oacute;rdenes de trabajo generadas</h2>
-<br>
+
 <form id='form' action='' method='POST'>
-    <p><b>Acci&oacute;n:</b><br>
+    <p><label>Acci&oacute;n:</label>
     <select name="accion">
         <option value=ninguno>Seleccione una acci&oacute;n...</option>
         <option value=aprobar>Aprobar</option>
         <option value=rechazar>Rechazar</option>
     </select></p>
-    <p><b>Observaci&oacute;n(opcional):</b><br>
+    <p><label>Observaci&oacute;n (opcional):</label>
     <textarea name="observacion" cols=50 rows=4></textarea>
     </p>
-    <p><input type='submit' value='Guardar'></input><input type='hidden' value='1' name='submitted'></input>
+    <p class="espacio-submit"><input type='submit' value='Guardar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
 <?php
 
 if (isset($_POST['submitted'])) {
@@ -107,8 +107,8 @@ if (isset($_POST['submitted'])) {
     	<p>No se encontraron OT para revisar.</p>
 <?php else : ?>
 	<h4>Seleccione una orden de trabajo a modificar</h4>
-	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">sel</th>
@@ -150,8 +150,6 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-<br>
-<br>
    
 <?php endif; ?>
     </div><!-- overflow -->

@@ -75,8 +75,7 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_personas` WHERE `idg
     <p><b>localidad:</b><br><input type='text' name='localidad' value='<?= stripslashes($row['localidad']) ?>' class='required'></input>
     <p><b>centro de costo:</b><br><input type='text' name='centro_de_costo' value='<?= stripslashes($row['centro_de_costo']) ?>'  class='required'></input>
 	
-    <br>
-<p><input type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
+<p><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
 <? } ?>

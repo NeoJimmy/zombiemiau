@@ -27,9 +27,8 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>B&uacute;squeda de OT por solicitante</h2>
-<br>
 
 <form id='form' action='' method='POST'>
     <table id="clear" style="width:100%;">
@@ -56,7 +55,7 @@ mysql_query("SET NAMES 'utf8'");
 			        }
 			    ?>
 			    </select></p>
-			    <p><input type='submit' value='Buscar'></input><input type='hidden' value='1' name='submitted'></input>
+			    <p><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
 		    </td>
     	</tbody>
     </table>
@@ -95,7 +94,7 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h4>Orden de trabajo</h4>
 	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">Nro de OT</th>
@@ -139,12 +138,10 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-<br>
-<br>
    
 <?php endif; ?>
     </div><!-- overflow -->
-    <input type="button" value="Descargar Reporte" onclick="location.href='reporte_solicitante.php?solicitante=<?php echo $_POST['solicitante']; ?>'">
+    <input class="btn" type="button" value="Descargar Reporte" onclick="location.href='reporte_solicitante.php?solicitante=<?php echo $_POST['solicitante']; ?>'">
 <?php
 }//submitted
 ?>

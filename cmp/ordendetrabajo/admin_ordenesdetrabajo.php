@@ -50,9 +50,9 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Administrar ordenes de trabajo</h2>
-<br>
+
 <?php
 
 // Eliminar elemento
@@ -93,8 +93,7 @@ $rows = mysql_num_rows($result);
 
 <?php else : ?>
 
-    <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content">
+    <table id="tabla_agenda" class="ui-widget ui-widget-content  table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">nro OT</th>
@@ -149,7 +148,7 @@ $rows = mysql_num_rows($result);
 <?php endif; ?>
     </div>
 <?php if($rows) :?>
-<br><br>
+
 <?php endif;?>
 
 </div>

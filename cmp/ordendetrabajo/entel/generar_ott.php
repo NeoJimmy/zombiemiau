@@ -27,16 +27,16 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Revisar &oacute;rdenes de trabajo con OTT por generar</h2>
-<br>
+
 <form id='form' action='' method='POST'>
     <p><b>Acci&oacute;n:</b><br>
     <select name="accion">
         <option value=ninguno>Seleccione una acci&oacute;n...</option>
         <option value=generada>OTT generada</option>
     </select></p>
-    <p><input type='submit' value='Guardar'></input><input type='hidden' value='1' name='submitted'></input>
+    <p><input type='submit' value='Guardar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
 <?php
 
 if (isset($_POST['submitted'])) {
@@ -93,9 +93,9 @@ if (isset($_POST['submitted'])) {
      if ( $rows == 0) : ?>
     	<p>No hay ordenes de trabajo por revisar.</p>
 <?php else : ?>
-	<h4>Seleccione una orden de trabajo a modificar</h4>
-	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+	<h3>Seleccione una orden de trabajo a modificar</h3>
+
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">sel</th>

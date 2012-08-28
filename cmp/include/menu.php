@@ -1,5 +1,10 @@
-<h2><img src="http://localhost/cmp/images/lwis.celebrity/logo_lwis.png" alt="LWIS.net"> Control de Obras de Trabajo - CMP</h2>
+
+
 <div id="header">
+
+<h1><img src="http://localhost/cmp/images/lwis.celebrity/logo_lwis.png" alt="LWIS.net"> Control de Obras de Trabajo - CMP</h1>
+
+
 <!--<img alt="portal de la subgerencia de calidad" class="banner" src="http://localhost/obras/img/bannerentel.png"></img>-->
 <!-- Beginning of compulsory code below -->
 <ul id="nav" class="dropdown dropdown-linear dropdown-columnar">
@@ -7,7 +12,7 @@
 	<?php  if(isset($_SESSION['usuario']) && (($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='operadora' || $_SESSION['usuario']['perfil']=='evaluador_tecnico' || ($_SESSION['usuario']['perfil']=='admin_cmp')|| ($_SESSION['usuario']['perfil']=='admin_cmp2'))):?>
 	<li class="dir">Gu&iacute;a CMP
 		<ul>
-			<li class="dir">Listar
+			<li class="dir"><strong>Listar</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/guia/listar_personas.php">Personas</a></li>
 					<li><a href="http://localhost/cmp/guia/listar_lugaresycargos.php">Lugares y cargos</a></li>
@@ -16,7 +21,7 @@
 					<?php endif; ?>
 				</ul>
 			</li>
-			<li class="dir">Buscar
+			<li class="dir"><strong>Buscar</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/guia/buscar_personas.php">Personas</a></li>
 					<li><a href="http://localhost/cmp/guia/buscar_lugaresycargos.php">Lugares y cargos</a></li>
@@ -32,14 +37,14 @@
 	<li class="dir">&Oacute;rdenes de trabajo
 		<ul>
 			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='operadora'):?>			
-			<li class="dir">Acciones de operadora
+			<li class="dir"><strong>Acciones de operadora</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/ordendetrabajo/crear.php">Crear Orden</a></li>
 				</ul>
 			</li>
 			<?php endif; ?>
 			<?php  if(isset($_SESSION['usuario']) && (($_SESSION['usuario']['perfil']=='admin') || ($_SESSION['usuario']['perfil']=='admin_cmp') || ($_SESSION['usuario']['perfil']=='admin_cmp2'))):?>
-			<li class="dir">Acciones de CMP<br><br>
+			<li class="dir"><strong>Acciones de CMP</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/ordendetrabajo/crear.php">Crear Orden</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/cmp/revisar_generadas.php">Revisar OT generadas</a></li>
@@ -50,7 +55,7 @@
 			</li>
 			<?php endif; ?>
 			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_tecnico' || $_SESSION['usuario']['perfil']=='evaluador_comercial'):?>
-			<li class="dir">Acciones de Entel<br><br>
+			<li class="dir"><strong>Acciones de Entel</strong>
 				<ul>
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin')) :?>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/generar_evaluaciontecnica.php">Generar evaluaci&oacute;n t&eacute;cnica</a></li>
@@ -71,7 +76,7 @@
 			</li>
 			<?php endif; ?>
 			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_tecnico'):?>
-			<li class="dir">B&uacute;squeda<br><br>
+			<li class="dir"><strong>B&uacute;squeda</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/ordendetrabajo/busqueda_numero.php">Por n&uacute;mero</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/busqueda_solicitante.php">Por solicitante</a></li>
@@ -81,7 +86,7 @@
 					<li><a href="http://localhost/cmp/ordendetrabajo/busqueda_tipo_ot.php">Por tipo de OT</a></li>
 				</ul>
 			</li>
-			<li class="dir">Reportes<br><br>
+			<li class="dir"><strong>Reportes</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/reportes/reporte_general.php">Reporte general</a></li>
 				</ul>
@@ -93,13 +98,13 @@
 	<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin')):?>
 	<li class="dir">Administrar
 		<ul>
-			<li class="dir">Permisos de acceso<br><br>
+			<li class="dir"><strong>Permisos de acceso</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/usuarios/admin_usuarios.php">Usuarios</a></li>
 					<li><a href="http://localhost/cmp/perfiles/admin_perfiles.php">Perfiles</a></li>
 				</ul>
 			</li>
-			<li class="dir">Gu&iacute;a CMP<br><br>
+			<li class="dir"><strong>Gu&iacute;a CMP</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/guia/admin_personas.php">Gu&iacute;a de personas</a></li>
 					<li><a href="http://localhost/cmp/guia/admin_lugaresycargos.php">Gu&iacute;a de lugares y cargos</a></li>
@@ -107,7 +112,7 @@
 					<li><a href="http://localhost/cmp/guia/admin_tiposdeanexo.php">Tipos de anexo</a></li>
 				</ul>
 			</li>
-			<li class="dir">Ordenes de trabajo
+			<li class="dir"><strong>Ordenes de trabajo</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/ordendetrabajo/admin_ordenesdetrabajo.php">Ordenes de trabajo</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/admin_tipodeorden.php">Tipos de &oacute;rdenes de trabajo</a></li>

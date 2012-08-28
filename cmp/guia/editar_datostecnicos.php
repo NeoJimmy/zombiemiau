@@ -99,11 +99,11 @@ echo "<a href='admin_datostecnicos.php'>Volver a Datos t&eacute;cnicos</a><br />
 //Llenamos el formulario
 $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_datostecnicos` WHERE `idguia_datostecnicos` = '$idguia_datostecnicos' "));
 ?>
-<br>
+
 <h2>Editar datos t&eacute;cnicos</h2>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-<br>
+
 	<p><label><b>anexo:</b></label><input type='text' name='anexo' value='<?= stripslashes($row['anexo']) ?>' class='required'><br>
     <p><label><b>tipo:</b></label>
 	<select id="parent" name='tipo'>
@@ -149,8 +149,8 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_datostecnicos` WHERE
 	<p><label><b>serie:</b></label><input type='text' name='serie' value='<?= stripslashes($row['serie']) ?>' class='required'><br>
 	<p><label><b>mac:</b></label><input type='text' name='mac' value='<?= stripslashes($row['mac']) ?>' class='required'><br>
 	<p><label><b>switch-puerta:</b></label><input type='text' name='switch_puerta' value='<?= stripslashes($row['switch_puerta']) ?>' class='required'><br>		
-    <br>
-<p><input type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
+
+<p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
 <? } ?>

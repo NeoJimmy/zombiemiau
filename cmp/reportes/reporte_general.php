@@ -27,9 +27,8 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<br>
+
 <h2>Reporte general</h2>
-<br>
 
 <?php
 
@@ -50,9 +49,9 @@ if (isset($_POST['submitted'])) {
      if ( $rows == 0) : ?>
     	<p>No se encontraron registros con los datos ingresados.</p>
 <?php else : ?>
-	<h4>Orden de trabajo</h4>
-	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content">
+	<h3>Orden de trabajo</h3>
+
+    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">nro de OT</th>
@@ -97,12 +96,10 @@ if (isset($_POST['submitted'])) {
     ?>
       </tbody>
     </table>
-<br>
-<br>
    
 <?php endif; ?>
     </div><!-- overflow -->
-    <input type="button" value="Descargar Reporte" onclick="location.href='descargar_reporte.php'">
+    <input type="button" class="btn" value="Descargar Reporte" onclick="location.href='descargar_reporte.php'">
 
 </div>
 
