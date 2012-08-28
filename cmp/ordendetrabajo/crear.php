@@ -5,33 +5,6 @@
 <head>
   <!--cabecera estandar-->
   <?php include ("../include/head.php")?>
-  <script type="text/javascript" src="../js/jquery.ui.datepicker-es.js"></script>
-
-  <script type="text/javascript">
-	$(function() {
-		var dates = $( "#from").datepicker({
-                        regional: "es",
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 3,
-			onSelect: function( selectedDate ) {
-				var option = this.id == "from" ? "minDate" : "maxDate",
-					instance = $( this ).data( "datepicker" );
-					date = $.datepicker.parseDate(
-						instance.settings.dateFormat ||
-						$.datepicker._defaults.dateFormat,
-						selectedDate, instance.settings );
-				dates.not( this ).datepicker( "option", option, date );
-			}
-		});
-	});
-	
-	$(function() {
-		$( "input:submit, button" ).button();
-	});
-	
-	
-  </script>
   <!--combobox dependiente-->
   <script type="text/javascript">
 		function makeSublist(parent,child,isSubselectOptional,childVal)
@@ -60,7 +33,7 @@
 			makeSublist('parent2', 'child2', true, '1');
 		});
   </script>
-    <script type="text/javascript">
+   <script type="text/javascript">
   		$(document).ready(function(){
     		$("#solicitud").validate();
   		});
