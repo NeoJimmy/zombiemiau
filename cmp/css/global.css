@@ -69,12 +69,15 @@ ul.dropdown ul li a {
   color: #fff;
 }
 ul.dropdown ul li.dir {
-  margin: 20px 1px 20px 0;
+  margin: 10px 1px 20px 0;
   padding: 0;
   border: 0;
 }
 ul.dropdown ul li.dir:hover {
   background-color: #005c8b;
+}
+ul.dropdown ul li.dir:first-child {
+  margin-left: 10px;
 }
 ul.dropdown ul li.dir strong {
   background-color: #005c8b;
