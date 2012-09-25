@@ -27,7 +27,10 @@
 				$("#dialog-confirm").dialog("open");
 			});
 		});
-	  </script>
+	</script>
+  	<!--necesario para confirm dialog-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
 </head>
 <body>
 
@@ -84,12 +87,12 @@ $rows = mysql_num_rows($result);
     <p>No se encontraron registros con los datos ingresados.</p>
 <?php else : ?>
 
-    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_agenda" class="table table-striped table-bordered">
+      <thead>
       <tr>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>		
-		<th scope="col">acciones</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>		
+		<th scope="col">Acciones</th>
       </tr>
       </thead>
       <tbody>

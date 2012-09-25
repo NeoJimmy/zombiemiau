@@ -65,16 +65,16 @@ $rows = mysql_num_rows($result);
 		
 		$objPHPExcel->getActiveSheet()->setCellValue('B5', 'Ordenes de trabajo');
 		
-		$objPHPExcel->getActiveSheet()->setCellValue('B7', 'nro de OT');
-		$objPHPExcel->getActiveSheet()->setCellValue('C7', 'estado');
-		$objPHPExcel->getActiveSheet()->setCellValue('D7', 'creación de OT');
-		$objPHPExcel->getActiveSheet()->setCellValue('E7', 'inicio del estado actual');
-		$objPHPExcel->getActiveSheet()->setCellValue('F7', 'ciudad');
-		$objPHPExcel->getActiveSheet()->setCellValue('G7', 'lugar');
-		$objPHPExcel->getActiveSheet()->setCellValue('H7', 'tipo');
-		$objPHPExcel->getActiveSheet()->setCellValue('I7', 'subtipo');
-		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'descripción');
-		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'observación de cierre');
+		$objPHPExcel->getActiveSheet()->setCellValue('B7', 'Nro de OT');
+		$objPHPExcel->getActiveSheet()->setCellValue('C7', 'Estado');
+		$objPHPExcel->getActiveSheet()->setCellValue('D7', 'Creación de OT');
+		$objPHPExcel->getActiveSheet()->setCellValue('E7', 'Inicio del estado actual');
+		$objPHPExcel->getActiveSheet()->setCellValue('F7', 'Ciudad');
+		$objPHPExcel->getActiveSheet()->setCellValue('G7', 'Lugar');
+		$objPHPExcel->getActiveSheet()->setCellValue('H7', 'Tipo');
+		$objPHPExcel->getActiveSheet()->setCellValue('I7', 'Subtipo');
+		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'Descripción');
+		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'Observación del estado actual');
 		
 		//Propiedades de la cabecera de la tabla materiales
 		$objPHPExcel->getActiveSheet()->getStyle('B7:K7')->applyFromArray(

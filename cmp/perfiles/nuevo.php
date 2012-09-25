@@ -57,10 +57,10 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 
     <h2>Nuevo perfil</h2>
     <form id="myform"  action='' method='POST'>
-    <p><b>Nombre del perfil:</b><br /><input type='text' name='nombre' class='required'/>
-    <p><b>Descripci&oacute;n:</b><br /><input  type='text' name='descripcion' class='required' />
+    <p><b>Nombre del perfil:</b><br><input type='text' name='nombre' class='required'>
+    <p><b>Descripci&oacute;n:</b><br><input  type='text' name='descripcion' class='required'>
     <p>
-    <input class='submit btn btn-primary' type='submit' value='Agregar perfil' /><input type='hidden' value='1' name='submitted' /></p>
+    <input class='submit btn btn-primary' type='submit' value='Agregar perfil'><input type='hidden' value='1' name='submitted'></p>
     </form>
 
 </div>
@@ -69,8 +69,8 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 //se acabo la sesion           
 else :                         
 ?>
-<br /><center><h3>Tu sesi&oacute;n a expirado...</h3><br /><br />
-<p><a href='../../obras/index.php'>volver a Inicio</a></p></center>
+<br><center><h3>Tu sesi&oacute;n a expirado...</h3><br><br>
+<p><a href='../index.php'>volver a Inicio</a></p></center>
 <?php 
 endif; 
 ?>

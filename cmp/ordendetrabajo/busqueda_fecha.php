@@ -28,9 +28,9 @@
 	});
   </script>
 
-    <!--necesario para tabs y UI-->
-    <link type="text/css" href="http://localhost/cmp/css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
-    <script type="text/javascript" src="http://localhost/cmp/js/jquery-ui-1.8.9.custom.min.js"></script>
+    <!--necesario para el calendario-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
 
 </head>
 <body>
@@ -60,10 +60,10 @@ mysql_query("SET NAMES 'utf8'");
 
 <form id='form' action='' method='POST'>
 	<p><label for="from">Desde</label>
-    <input type="text" id="from" name="from" value="<?php echo (isset($_POST['from'])) ? $_POST['from'] : NULL ?>"></input><br></p>
+    <input type="text" id="from" name="from" value="<?php echo (isset($_POST['from'])) ? $_POST['from'] : NULL ?>"><br></p>
     <p><label for="to">hasta</label>
-    <input type="text" id="to" name="to" value="<?php echo (isset($_POST['to'])) ? $_POST['to'] : NULL ?>"></input></p>
-    <p class="espacio-submit"><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
+    <input type="text" id="to" name="to" value="<?php echo (isset($_POST['to'])) ? $_POST['to'] : NULL ?>"></p>
+    <p class="espacio-submit"><input type='submit' value='Buscar' class='btn btn-primary'><input type='hidden' value='1' name='submitted'>
 </form>
 
 <?php
@@ -71,9 +71,9 @@ mysql_query("SET NAMES 'utf8'");
 if (isset($_POST['submitted'])) {
 	foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
 	
-         $sql= "SELECT DISTINCT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`
+         $sql= "SELECT DISTINCT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado`, `inicio`, `observacion` 
            FROM `orden_de_trabajo`, `historial_ot` 
-           WHERE `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo` AND `inicio` BETWEEN STR_TO_DATE('".$_POST['from']."', '%d/%m/%Y')  AND STR_TO_DATE('".$_POST['to']."', '%d/%m/%Y') " ;    
+           WHERE `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo` AND `inicio` BETWEEN STR_TO_DATE('".$_POST['from']."', '%d/%m/%Y')  AND STR_TO_DATE('".$_POST['to']."', '%d/%m/%Y') AND `termino` IS NULL " ;    
 
    //echo $sql."<br>";
 
@@ -87,21 +87,23 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h4>Orden de trabajo</h4>
 	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_ot" class="table table-striped table-bordered">
+      <thead>
       <tr>
    		<th scope="col">Nro OT</th>
+   		<th scope="col">Estado</th>
+      	<th scope="col">Inicio del estado actual</th>   		
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>		
-		<th scope="col">anexo</th>
+		<th scope="col">Anexo</th>
 		<th scope="col">Ciudad</th>
 		<th scope="col">Faena</th>
-		<th scope="col">area</th>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>
-		<th scope="col">descripci&oacute;n</th>
-		<th scope="col">observaciones</th>
-		<th scope="col">evaluaci&oacute;n t&eacute;cnica</th>
+		<th scope="col">Area</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>
+		<th scope="col">Descripci&oacute;n</th>
+		<th scope="col">Observaciones</th>
+		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
       </tr>
       </thead>
       <tbody>
@@ -112,6 +114,8 @@ if (isset($_POST['submitted'])) {
 	    <?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
 			<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
+			<td><?php echo $ot[$i]['estado']; ?></td>
+			<td><?php $date = new DateTime($ot[$i]['inicio']); echo $date->format('d/m/Y'); ?></td>					
 	        <td><?php echo $ot[$i]['nombre']; ?></td>
    	        <td><?php echo $ot[$i]['apellido']; ?></td>
 	        <td><?php echo $ot[$i]['anexo']; ?></td>
@@ -122,7 +126,7 @@ if (isset($_POST['submitted'])) {
 	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
 	        <td><?php echo $ot[$i]['descripcion']; ?></td>
 	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	                
+	        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	                
 	 </tr>
     <?php
              endfor;

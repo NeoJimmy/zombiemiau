@@ -51,19 +51,19 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h3>Orden de trabajo</h3>
 
-    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_ot" class="table table-striped table-bordered">
+      <thead>
       <tr>
-      	<th scope="col">nro de OT</th>
-      	<th scope="col">estado</th>
-      	<th scope="col">creaci&oacute;n de OT</th>
-      	<th scope="col">inicio del estado actual</th>
-      	<th scope="col">ciudad</th>
-		<th scope="col">lugar</th>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>
-		<th scope="col">descripci&oacute;n</th>
-		<th scope="col">observaci&oacute;n de cierre</th>
+      	<th scope="col">Nro de OT</th>
+      	<th scope="col">Estado</th>
+      	<th scope="col">Creaci&oacute;n de OT</th>
+      	<th scope="col">Inicio del estado actual</th>
+      	<th scope="col">Ciudad</th>
+		<th scope="col">Lugar</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>
+		<th scope="col">Descripci&oacute;n</th>
+		<th scope="col">Observaci&oacute;n del estado actual</th>
       </tr>
       </thead>
       <tbody>
@@ -89,7 +89,7 @@ if (isset($_POST['submitted'])) {
         <td><?php echo $ot[$i]['tipo_ot']; ?></td>
         <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
         <td><?php echo $ot[$i]['descripcion']; ?></td>
-        <td><?php if($ot[$i]['estado'] == 'CERRADA') echo $ot[$i]['observacion']; ?></td>
+        <td><?php echo $ot[$i]['observacion']; ?></td>
 	 </tr>
     <?php
              endfor;

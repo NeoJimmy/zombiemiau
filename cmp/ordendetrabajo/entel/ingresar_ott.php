@@ -4,14 +4,14 @@
 <html>
 <head>
   <!--cabecera estandar-->
-  <?php include ("../include/head.php")?>
+  <?php include ("../../include/head.php")?>
 </head>
 <body>
 
 <div id="container">
 
 <!-- div menu -->
-<?php include ("../include/menu.php"); ?>
+<?php include ("../../include/menu.php"); ?>
 
 <?php
 //Si existe una sesion muestro el contenido
@@ -20,7 +20,7 @@
 <div id="content">
 
 <?php
-include('../include/conect.php');
+include('../../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
 mysql_select_db($config['db_database']);
@@ -28,40 +28,42 @@ mysql_query("SET NAMES 'utf8'");
 
 ?>
 
-<h2>B&uacute;squeda de Orden de trabajo por Estado</h2>
-
+<h2>Ingresar OTT a una orden de trabajo</h2>
 
 <form id='form' action='' method='POST'>
-	<p><b>Estado actual:</b><br>
-	<select name="estado">
-	<?php
-		$query="SELECT estado FROM estado_ot";
-	    $result = mysql_query($query) or die(mysql_error());
-	    if ($result)
-	    while($renglon = mysql_fetch_array($result))
-	    {
-	        $opcion = $renglon['estado'];
-	        $valor = str_replace(" ", "_",$renglon['estado']);
-	        if($valor != $_POST['estado'])
-	        	echo "<option value=".$valor.">".$opcion."</option>\n";
-	        else
-	        	echo "<option selected value=".$valor.">".$opcion."</option>\n";
-	    }
-	?>
-	</select></p>
-	<p><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
-</form>
-
+    <p><b>N&uacute;mero de OTT:</b><br>
+    <input name="nro_ott" type="text" size="37" class="required"></p>
+    <p><input type='submit' value='Guardar' class="btn btn-primary"><input type='hidden' value='1' name='submitted'>
 <?php
 
 if (isset($_POST['submitted'])) {
 	foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
-	$estado = str_replace("_", " ", $_POST['estado']);
+	
+	//Cambio de estado.
+	if(isset($_POST['nro_ott']) && isset($_POST['nro_ot']) )
+	{
+		$nro_ott = $_POST['nro_ott'];		
+		$nro_ot = $_POST['nro_ot'];
+				
+		$sql = "INSERT INTO `ott_generadas` 
+		(`idott_generadas`, `orden_de_trabajo_id_orden_de_trabajo`, `nro_ott`) 
+		VALUES (NULL, $nro_ot, '$nro_ott');";
+		
+    	$result = mysql_query($sql) or die(mysql_error());
+    	if(!$result){
+    		echo "<br>Fallo al ingresar OTT <br>";
+    	}else {
+    		echo "<br>Se ha sido ingresado el n&uacute;mero de OTT correctamente.<br>";
+    	}
+
+	}
+
+}
 	
     //Parametro obtenido del combobox
-         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones` , `evaluacion_tecnica`   
-           FROM `orden_de_trabajo`, `historial_ot` 
-           WHERE  `estado` = '$estado' AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
+     $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`  
+       FROM `orden_de_trabajo`, `historial_ot` 
+       WHERE  `estado` = 'EJECUCIÓN' AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
 
    //echo $sql."<br>";
 
@@ -71,13 +73,14 @@ if (isset($_POST['submitted'])) {
     <div style="overflow-x: auto; overflow-y: hidden;">
 <?php
      if ( $rows == 0) : ?>
-    	<p>No se encontraron registros con los datos ingresados.</p>
+    	<p>No hay ordenes de trabajo por revisar.</p>
 <?php else : ?>
-	<h4>Orden de trabajo</h4>
-	<br>
+	<h3>Seleccione una orden de trabajo a modificar</h3>
+
     <table id="tabla_ot" class="table table-striped table-bordered">
       <thead>
       <tr>
+      	<th scope="col">Sel</th>
    		<th scope="col">Nro OT</th>
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>		
@@ -89,16 +92,22 @@ if (isset($_POST['submitted'])) {
 		<th scope="col">Subtipo</th>
 		<th scope="col">Descripci&oacute;n</th>
 		<th scope="col">Observaciones</th>
-		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>		
+		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
       </tr>
       </thead>
       <tbody>
    <?php
      for ($i = 0; $i < $rows; $i++)
      $ot[] = mysql_fetch_assoc($result);
+     
    ?>
-	    <?php for ($i = 0; $i < $rows; $i++): ?>
+	<?php for ($i = 0; $i < $rows; $i++): 
+    	 	$rs = mysql_query("SELECT * FROM historial_ot WHERE orden_de_trabajo_idorden_de_trabajo =".$ot[$i]['idorden_de_trabajo']." AND estado='EVALUACIÓN COMERCIAL' ") or die(mysql_error());
+	 		$row = mysql_fetch_row($rs);
+	 		if(isset($row[0])) :
+	 	?>
 	<tr>	
+			<td><input type=radio name=nro_ot value=<?php echo $ot[$i]['idorden_de_trabajo'];?>></td>
 			<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
 	        <td><?php echo $ot[$i]['nombre']; ?></td>
    	        <td><?php echo $ot[$i]['apellido']; ?></td>
@@ -110,21 +119,24 @@ if (isset($_POST['submitted'])) {
 	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
 	        <td><?php echo $ot[$i]['descripcion']; ?></td>
 	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-   	        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        	        	        
+	        <td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
 	 </tr>
     <?php
-             endfor;
+    		endif;
+         endfor;
     ?>
       </tbody>
     </table>
+<br>
+<br>
    
 <?php endif; ?>
     </div><!-- overflow -->
-    <input type="button" class="btn" value="Descargar Reporte" onclick="location.href='reporte_estado.php?estado=<?php echo $_POST['estado']; ?>'">
-<?php
-}//submitted
-?>
 
+<?php
+//submitted
+?>
+</form>
 </div>
 
 <?php
@@ -132,7 +144,7 @@ if (isset($_POST['submitted'])) {
 /*else :
 ?>
 <br><center><h3>Tu sesi&oacute;n a expirado...</h3><br><br>
-<p><a href='../index.php'>volver a Inicio</a></p></center>
+<p><a href='../../index.php'>volver a Inicio</a></p></center>
 <?php
 endif;
  *
@@ -140,7 +152,7 @@ endif;
 ?>
 
 <!-- div footer-->
-<?php include ("../include/footer.php") ?>
+<?php include ("../../include/footer.php") ?>
 
 </div>
 

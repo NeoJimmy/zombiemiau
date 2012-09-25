@@ -83,17 +83,17 @@ if (isset($_GET['ciudad']) && isset($_GET['faena'])) :
 		$objPHPExcel->getActiveSheet()->setCellValue('B5', 'Ordenes de trabajo');
 		
 		$objPHPExcel->getActiveSheet()->setCellValue('B7', 'Nro de OT');
-		$objPHPExcel->getActiveSheet()->setCellValue('C7', 'nombre');
-		$objPHPExcel->getActiveSheet()->setCellValue('D7', 'apellido');
-		$objPHPExcel->getActiveSheet()->setCellValue('E7', 'anexo');
-		$objPHPExcel->getActiveSheet()->setCellValue('F7', 'ciudad');
-		$objPHPExcel->getActiveSheet()->setCellValue('G7', 'faena');
-		$objPHPExcel->getActiveSheet()->setCellValue('H7', 'area');
-		$objPHPExcel->getActiveSheet()->setCellValue('I7', 'tipo');
-		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'subtipo');
-		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'descripción');
-		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'observaciones');
-		$objPHPExcel->getActiveSheet()->setCellValue('M7', 'estado');
+		$objPHPExcel->getActiveSheet()->setCellValue('C7', 'Nombre');
+		$objPHPExcel->getActiveSheet()->setCellValue('D7', 'Apellido');
+		$objPHPExcel->getActiveSheet()->setCellValue('E7', 'Anexo');
+		$objPHPExcel->getActiveSheet()->setCellValue('F7', 'Ciudad');
+		$objPHPExcel->getActiveSheet()->setCellValue('G7', 'Faena');
+		$objPHPExcel->getActiveSheet()->setCellValue('H7', 'Area');
+		$objPHPExcel->getActiveSheet()->setCellValue('I7', 'Tipo');
+		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'Subtipo');
+		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'Descripción');
+		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'Observaciones');
+		$objPHPExcel->getActiveSheet()->setCellValue('M7', 'Estado');
 		
 		//Propiedades de la cabecera de la tabla materiales
 		$objPHPExcel->getActiveSheet()->getStyle('B7:M7')->applyFromArray(

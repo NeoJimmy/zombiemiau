@@ -57,14 +57,6 @@ $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config
 mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
-// Proximo id a insertar
-$rs = mysql_query("SELECT MAX(idorden_de_trabajo) AS id FROM orden_de_trabajo") or die(mysql_error());
-$row = mysql_fetch_row($rs);
-if ($row[0] != NULL) {
-	$id = $row[0]+1;
-} else {
-	$id = 1;
-}
 
     if (isset($_POST['submitted'])) {
     foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
@@ -78,33 +70,25 @@ if ($row[0] != NULL) {
     $sql= "INSERT INTO `orden_de_trabajo`
     (`idorden_de_trabajo`, `nombre`, `apellido`,  `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`)
     VALUES (NULL, '{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['anexo']}', '{$_POST['ciudad']}', '{$_POST['faena']}', '{$_POST['area']}', '{$_POST['tipo']}', '{$_POST['subtipo']}', '{$_POST['descripcion']}', '{$_POST['observaciones']}');";
-
+    mysql_query($sql) or die(mysql_error());
     //echo $sql.'<br>';
+    $id = mysql_insert_id();
     
     //Si la OT es generada por los admins de CMP, esta es validada inmediatamente, pasando al estado de Generacion OT
     if($_SESSION['usuario']['perfil']=='operadora'){
 		$sql2 = "INSERT INTO `historial_ot`
 		(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
-		VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";
+		VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";	
     } else if ($_SESSION['usuario']['perfil']=='admin_cmp' || $_SESSION['usuario']['perfil']=='admin_cmp2' || $_SESSION['usuario']['perfil']=='admin'){
 		$sql2 = "INSERT INTO `historial_ot`
 		(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
 		VALUES (NULL, $id, 'GENERACIÓN OT',NOW(), NULL, NULL);";
     }
    // echo $sql2.'<br>';
-        
-    $result = mysql_query($sql) or die(mysql_error());
-    $result2 = mysql_query($sql2) or die(mysql_error());    
-    if (!$result || !$result2)
-    {
-        echo "La Inserción contiene errores. <br> Datos mal ingresados";
-        ?>
-        <br>
-        <a href="../index.php">Volver al inicio</a><br><br>
-        <?php
-        exit();
-    }
-
+    mysql_query($sql2) or die(mysql_error());
+    
+    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+	mysql_query($sql3) or die(mysql_error());
     echo "Fila Agregada.<br>";
     echo "<a href='../index.php'>Volver al inicio</a><br><br>";
     }
@@ -114,14 +98,14 @@ if ($row[0] != NULL) {
 <h2>Orden de trabajo Nº <?php echo $id;?></h2>
 		<form id="solicitud" action='' method='POST'>
 
-		<fieldset class="ui-widget ui-state-default ui-corner-all">
-		<legend class="ui-widget">Datos del solicitante</legend>
+		<fieldset>
+		<legend>Datos del solicitante</legend>
 			<br>
-		    <p><label>Nombre:</label><input name="nombre" type="text" size="37" class="required ui-widget ui-corner-all"></p>
-		    <p><label>Apellido:</label><input name="apellido" type="text" size="37" class="required ui-widget ui-corner-all"></p>
-		    <p><label>Anexo:</label><input name="anexo" type="text" size="37" class="required ui-widget ui-corner-all"></p>
+		    <p><label>Nombre:</label><input name="nombre" type="text" size="37" class="required"></p>
+		    <p><label>Apellido:</label><input name="apellido" type="text" size="37" class="required"></p>
+		    <p><label>Anexo:</label><input name="anexo" type="text" size="37" class="required"></p>
 		    <p><label>Ciudad:</label>
-		    <select id="parent" name="ciudad" class="ui-widget ui-state-default ui-corner-all">
+		    <select id="parent" name="ciudad">
 		    <?php
 		    	$query="SELECT DISTINCT ciudad FROM faenas";
 		        $result = mysql_query($query) or die(mysql_error());
@@ -135,7 +119,7 @@ if ($row[0] != NULL) {
 			?>
 		    </select></p>
 		    <p><label>Faena:</label>
-		    <select id="child" name="faena" class="ui-widget ui-state-default ui-corner-all">
+		    <select id="child" name="faena">
 		    <?php
 		        $query="SELECT ciudad, faena FROM faenas";
 		        $result = mysql_query($query) or die(mysql_error());
@@ -149,14 +133,14 @@ if ($row[0] != NULL) {
 		        }
 		    ?>
 		    </select></p>
-		    <p><label>&Aacute;rea:</label><input name="area" type="text" size="37" class="required ui-widget ui-corner-all"></p>
+		    <p><label>&Aacute;rea:</label><input name="area" type="text" size="37" class="required"></p>
 		</fieldset>
 		<br>
-		<fieldset class="ui-widget ui-state-default ui-corner-all">
-			<legend class="ui-widget">Datos de la solicitud</legend>
+		<fieldset>
+			<legend>Datos de la solicitud</legend>
 			<br>
 		    <p><label>Tipo de OT:</label>
-		    <select id="parent2" name="tipo" class="ui-widget ui-state-default ui-corner-all">
+		    <select id="parent2" name="tipo">
 		    <?php
 		        $query="SELECT DISTINCT tipo FROM tipo_ot";
 		        $result = mysql_query($query) or die(mysql_error());
@@ -169,7 +153,7 @@ if ($row[0] != NULL) {
 		        }
 		    ?>
 		    </select>&ensp;
-		    <select id="child2" name="subtipo" class="ui-widget ui-state-default ui-corner-all">
+		    <select id="child2" name="subtipo">
    		    <?php
 		        $query="SELECT tipo, subtipo FROM tipo_ot";
 		        $result = mysql_query($query) or die(mysql_error());
@@ -183,9 +167,8 @@ if ($row[0] != NULL) {
 		        }
 		    ?>
 		    </select>
-		    </p>
 		    <p><label>Descripci&oacute;n de la solicitud:</label><textarea name="descripcion" class="required" cols=50 rows=4></textarea></p>
-		    <p><label>Observaciones:</label><textarea name="observaciones" cols=50 rows=4  class="required"></textarea></p>
+		    <p><label>Observaciones:</label><textarea name="observaciones" cols=50 rows=4  class=""></textarea></p>
 		</fieldset>
 		<br>
 		<div class="demo">

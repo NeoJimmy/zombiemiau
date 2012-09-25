@@ -3,20 +3,14 @@
 <head>
     <!-- cabecera estandar-->
    <?php include ("include/head.php"); ?>
-
 </head>
 <body>
 <div id="container">
-
-
     <div id="banner"> </div>
     <!-- div menu principal-->
     <?php include ("include/menu.php"); ?>
-
-
     <div id="content">
-        <div  style="width: 440px;margin: 80px auto 100px;">
-                
+        <div  style="width: 440px;margin: 80px auto 100px;">              
                 <h2 style="text-align:center;">Sesi&oacute;n</h2>
                 <?php
                 if ( isset($_SESSION['error']) )
@@ -24,7 +18,6 @@
                     echo '<p class=error>', $_SESSION['error'], '</p>';
                     unset($_SESSION['error']);
                 }
-
                 // Si hay sesiÃƒÂ³n y se estÃƒÂ¡ logueado...
                 if ( isset($_SESSION['usuario']) ) :
                   // Mostrar enlace para log-out
@@ -44,11 +37,9 @@
                     <p class="espacio-submit"><input class="boton btn btn-primary" type="submit" value="Entrar"></p>
                 </form>
                <?php endif; ?>
-            
         </div>
     </div>
     <?php include ("include/footer.php") ?>
 </div>
-
 </body>
 </html> 

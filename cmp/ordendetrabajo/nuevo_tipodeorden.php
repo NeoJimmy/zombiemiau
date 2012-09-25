@@ -63,8 +63,8 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
     <h2>Nuevo registro</h2>
 
     <form id="myform"  action='' method='POST'>
-    <p><b>tipo:</b><br><input type='text' name='tipo' class='required'>
-    <p><b>subtipo:</b><br><input type='text' name='subtipo' class='required '>
+    <p><b>Tipo:</b><br><input type='text' name='tipo' class='required'>
+    <p><b>Subtipo:</b><br><input type='text' name='subtipo' class='required '>
     <p><input class='submit btn btn-primary' type='submit' value='Agregar Registro'><input type='hidden' value='1' name='submitted'>
     </form>
 </div>

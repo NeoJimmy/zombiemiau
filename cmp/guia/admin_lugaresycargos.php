@@ -28,6 +28,9 @@
 			});
 		});
 	  </script>
+  	<!--necesario para confirm dialog-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
 </head>
 <body>
 
@@ -87,15 +90,15 @@ $rows = mysql_num_rows($result);
 <?php else : ?>
 
     <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_agenda" class="table table-striped table-bordered">
+      <thead>
       <tr>
-      	<th scope="col">anexo</th>
-		<th scope="col">nombre</th>		
-		<th scope="col">unidad</th>
-		<th scope="col">localidad</th>
-		<th scope="col">centro de costo</th>		
-		<th scope="col">acciones</th>
+      	<th scope="col">Anexo</th>
+		<th scope="col">Nombre</th>		
+		<th scope="col">Unidad</th>
+		<th scope="col">Localidad</th>
+		<th scope="col">Centro de costo</th>		
+		<th scope="col">Acciones</th>
       </tr>
       </thead>
       <tbody>

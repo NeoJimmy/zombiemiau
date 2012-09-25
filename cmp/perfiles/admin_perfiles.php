@@ -25,7 +25,10 @@
 				$("#dialog-confirm").dialog("open");
 			});
 		});
-	  </script>
+	</script>
+	<!--necesario para confirm dialog-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
     </head>
 <body>
 <div id="container">
@@ -71,12 +74,12 @@ $rows = mysql_num_rows($result);
 
    <div style="overflow-x: auto; overflow-y: hidden;">
 	<br>
-    <table class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table class="table table-striped table-bordered">
+      <thead>
       <tr>
-      <th scope="col" >nombre</th>
-      <th scope="col">descripci&oacute;n</th>
-      <th scope="col">acciones</th>
+      <th scope="col" >Nombre</th>
+      <th scope="col">Descripci&oacute;n</th>
+      <th scope="col">Acciones</th>
       </tr>
       </thead>
       <tbody>

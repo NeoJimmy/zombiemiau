@@ -67,10 +67,10 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `usuario` WHERE `idUsuario
 <h2>Editar usuario</h2>
 
 <form id='formEditar' action='' method='POST'>
-<p><label>Rut:</label><input type='text' name='rut' value='<?= stripslashes($row['rut']) ?>' class="required rut"/>
-<p><label>Nombre:</label><input type='text' name='nombre_us' value='<?= stripslashes($row['nombre']) ?>' class="required" />
-<p><label>Contrase&ntilde;a:</label><input type='text' name='contrasena' value='' class="required" />
-<p><label>E-mail:</label><input type='text' name='email' value='<?= stripslashes($row['email']) ?>' class="required email"/>
+<p><label>Rut:</label><input type='text' name='rut' value='<?= stripslashes($row['rut']) ?>' class="required rut">
+<p><label>Nombre:</label><input type='text' name='nombre_us' value='<?= stripslashes($row['nombre']) ?>' class="required">
+<p><label>Contrase&ntilde;a:</label><input type='text' name='contrasena' value='' class="required">
+<p><label>E-mail:</label><input type='text' name='email' value='<?= stripslashes($row['email']) ?>' class="required email">
 <p><label>Perfil:</label>
 <select name="perfil">
     <?php
@@ -86,7 +86,7 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `usuario` WHERE `idUsuario
     ?>
 </select>
 
-<p class="espacio-submit"><input type='submit' value='Editar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
+<p class="espacio-submit"><input type='submit' value='Editar' class="btn btn-primary"><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
 <? } ?>

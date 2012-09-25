@@ -36,7 +36,7 @@ mysql_query("SET NAMES 'utf8'");
         <option value=ninguno>Seleccione una acci&oacute;n...</option>
         <option value=generada>OTT generada</option>
     </select></p>
-    <p><input type='submit' value='Guardar' class="btn btn-primary"></input><input type='hidden' value='1' name='submitted'></input>
+    <p><input type='submit' value='Guardar' class="btn btn-primary"><input type='hidden' value='1' name='submitted'>
 <?php
 
 if (isset($_POST['submitted'])) {
@@ -73,8 +73,10 @@ if (isset($_POST['submitted'])) {
     	}else {
     		echo "<br>La OT Nº ".$nro_ot." ha sido cambiada de estado .<br>";
     	}
-	}
+    	$sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+		mysql_query($sql3) or die(mysql_error());
 
+	}
 
 }
 	
@@ -95,22 +97,22 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h3>Seleccione una orden de trabajo a modificar</h3>
 
-    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_ot" class="table table-striped table-bordered">
+      <thead>
       <tr>
-      	<th scope="col">sel</th>
+      	<th scope="col">Sel</th>
    		<th scope="col">Nro OT</th>
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>		
-		<th scope="col">anexo</th>
+		<th scope="col">Anexo</th>
 		<th scope="col">Ciudad</th>
 		<th scope="col">Faena</th>
-		<th scope="col">area</th>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>
-		<th scope="col">descripci&oacute;n</th>
-		<th scope="col">observaciones</th>
-		<th scope="col">evaluaci&oacute;n t&eacute;cnica</th>
+		<th scope="col">Area</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>
+		<th scope="col">Descripci&oacute;n</th>
+		<th scope="col">Observaciones</th>
+		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
       </tr>
       </thead>
       <tbody>
@@ -120,20 +122,19 @@ if (isset($_POST['submitted'])) {
    ?>
 	    <?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
-			<td><input type=radio name=nro_ot value=<?php echo $ot[$i]['idorden_de_trabajo'];?>></td>
-			<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
-	        <td><?php echo $ot[$i]['nombre']; ?></td>
-   	        <td><?php echo $ot[$i]['apellido']; ?></td>
-	        <td><?php echo $ot[$i]['anexo']; ?></td>
-	        <td><?php echo $ot[$i]['ciudad']; ?></td>
-	        <td><?php echo $ot[$i]['faena'] ?></td>	                       
-   	        <td><?php echo $ot[$i]['area']; ?></td>   	        
-	        <td><?php echo $ot[$i]['tipo_ot'] ?></td>
-	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
-	        <td><?php echo $ot[$i]['descripcion']; ?></td>
-	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        	        
-        
+		<td><input type=radio name=nro_ot value=<?php echo $ot[$i]['idorden_de_trabajo'];?>></td>
+		<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
+		<td><?php echo $ot[$i]['nombre']; ?></td>
+		<td><?php echo $ot[$i]['apellido']; ?></td>
+		<td><?php echo $ot[$i]['anexo']; ?></td>
+		<td><?php echo $ot[$i]['ciudad']; ?></td>
+		<td><?php echo $ot[$i]['faena'] ?></td>	                       
+		<td><?php echo $ot[$i]['area']; ?></td>   	        
+		<td><?php echo $ot[$i]['tipo_ot'] ?></td>
+		<td><?php echo $ot[$i]['subtipo_ot']; ?></td>
+		<td><?php echo $ot[$i]['descripcion']; ?></td>
+		<td><?php echo $ot[$i]['observaciones']; ?></td>
+    	<td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>	
 	 </tr>
     <?php
              endfor;

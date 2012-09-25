@@ -53,7 +53,7 @@ mysql_query("SET NAMES 'utf8'");
 			        }
 			    ?>
 			    </select></p>
-			    <p><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
+			    <p><input type='submit' value='Buscar' class='btn btn-primary'><input type='hidden' value='1' name='submitted'>
 		    </td>
     	</tbody>
     </table>
@@ -73,8 +73,8 @@ if (isset($_POST['submitted'])) {
            WHERE  `idorden_de_trabajo`=$nro_ot" ;
            
         $sql2 =  "SELECT *
-           FROM `historial_ot`
-           WHERE  `orden_de_trabajo_idorden_de_trabajo`=$nro_ot" ;
+        	FROM `historial_ot`, `historial_ot_usuario`
+			WHERE  `orden_de_trabajo_idorden_de_trabajo`=$nro_ot AND `historial_ot_idhistorial_ot`=`idhistorial_ot`" ;
     }
 
    //echo $sql."<br>";
@@ -92,20 +92,20 @@ if (isset($_POST['submitted'])) {
 <?php else : ?>
 	<h4>Orden de trabajo</h4>
 	<br>
-    <table id="tabla_ot" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_ot" class="table table-striped table-bordered">
+      <thead>
       <tr>
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>		
-		<th scope="col">anexo</th>
+		<th scope="col">Anexo</th>
 		<th scope="col">Ciudad</th>
 		<th scope="col">Faena</th>
-		<th scope="col">area</th>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>
-		<th scope="col">descripci&oacute;n</th>
-		<th scope="col">observaciones</th>
-		<th scope="col">evaluaci&oacute;n t&eacute;cnica</th>
+		<th scope="col">Area</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>
+		<th scope="col">Descripci&oacute;n</th>
+		<th scope="col">Observaciones</th>
+		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
       </tr>
       </thead>
       <tbody>
@@ -125,7 +125,7 @@ if (isset($_POST['submitted'])) {
 	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
 	        <td><?php echo $ot[$i]['descripcion']; ?></td>
 	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>
+	        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
 	 </tr>
     <?php
              endfor;
@@ -135,13 +135,14 @@ if (isset($_POST['submitted'])) {
 <br>
 <h4>Historial de la Orden de trabajo</h4>
 	<br>
-    <table id="tabla_historial" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_historial" class="table table-striped table-bordered">
+      <thead>
       <tr>
 		<th scope="col">Estado</th>
-		<th scope="col">inicio</th>		
-		<th scope="col">t&eacute;rmino</th>
-		<th scope="col">observaci&oacute;n</th>
+		<th scope="col">Inicio</th>		
+		<th scope="col">T&eacute;rmino</th>
+		<th scope="col">Observaci&oacute;n</th>
+		<th scope="col">Usuario</th>
       </tr>
       </thead>
       <tbody>
@@ -167,7 +168,8 @@ if (isset($_POST['submitted'])) {
 	        ?>
 	        <td><?php echo $inicio;?></td>
 	        <td><?php echo $termino; ?></td>
-	        <td><?php echo $historial[$i]['observacion']; ?></td>	        
+	        <td><?php echo $historial[$i]['observacion']; ?></td>
+   	        <td><?php echo $historial[$i]['usuario']; ?></td>        	        
 	</tr>
     <?php
              endfor;

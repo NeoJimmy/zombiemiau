@@ -29,6 +29,9 @@
 			});
 		});
 	  </script>
+  	<!--necesario para confirm dialog-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
     </head>
 <body>
 <div id="container">
@@ -79,8 +82,8 @@ $rows = mysql_num_rows($result);
 	    <p><a class="btn btn-success" href="nuevo.php">Nuevo usuario</a></p>
 
 	   <div style="overflow-x: auto; overflow-y: hidden;">
-	    <table class="ui-widget ui-widget-content table table-striped table-bordered">
-	      <thead class="ui-widget-header">
+	    <table class="table table-striped table-bordered">
+	      <thead>
 	      <tr>
 		      <th scope="col">rut</th>
 		      <th scope="col">usuario</th>

@@ -51,7 +51,7 @@ $rows = mysql_num_rows($result);
     <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
-      	<th scope="col">anexo</th>
+      	<th scope="col">Anexo</th>
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>	
 		<th scope="col">Unidad</th>

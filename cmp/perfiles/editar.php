@@ -66,15 +66,13 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `perfil` WHERE `idperfil` 
 ?>
 
 <h2>Editar perfil</h2>
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-<br />
-<p><b>Nombre:</b><br /><input type='text' name='nombre' value='<?= stripslashes($row['nombre']) ?>' class="required"/>
-<p><b>Descripci&oacute;n</b><br /><textarea name="descripcion" rows="5" cols="40" class="required">
+<br>
+<p><b>Nombre:</b><br><input type='text' name='nombre' value='<?= stripslashes($row['nombre']) ?>' class="required">
+<p><b>Descripci&oacute;n</b><br><textarea name="descripcion" rows="5" cols="40" class="required">
 <?= stripslashes($row['descripcion']) ?>
 </textarea>
-<p><input type='submit' class="btn btn-primary" value='Editar' /><input type='hidden' value='1' name='submitted' />
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
+<p><input type='submit' class="btn btn-primary" value='Editar'><input type='hidden' value='1' name='submitted'>
 </form>
 <? } ?>
 
@@ -84,7 +82,7 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `perfil` WHERE `idperfil` 
 //se acabo la sesion
 else :
 ?>
-<br /><center><h3>Tu sesi&oacute;n a expirado...</h3><br /><br />
+<br><center><h3>Tu sesi&oacute;n a expirado...</h3><br><br>
 <p><a href='../../obras/index.php'>volver a Inicio</a></p></center>
 <?php 
 endif; 

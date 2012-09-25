@@ -28,6 +28,9 @@
 			});
 		});
 	  </script>
+  	<!--necesario para confirm dialog-->
+    <link type="text/css" href="../css/cupertino/jquery-ui-1.8.9.custom.css" rel="stylesheet"></link>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.9.custom.min.js"></script>
 </head>
 <body>
 <div id="container">
@@ -82,21 +85,21 @@ $rows = mysql_num_rows($result);
     <p>No se encontraron registros con los datos ingresados.</p>
 <?php else : ?>
     <br>
-    <table id="tabla_agenda" class="ui-widget ui-widget-content table table-striped table-bordered">
-      <thead class="ui-widget-header">
+    <table id="tabla_agenda" class="table table-striped table-bordered">
+      <thead>
       <tr>
-      	<th scope="col">anexo</th>
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>		
-		<th scope="col">categor&iacute;a</th>
-		<th scope="col">sap</th>
-		<th scope="col">correo de voz</th>
-		<th scope="col">claves</th>
-		<th scope="col">modelo</th>
-		<th scope="col">serie</th>
-		<th scope="col">mac</th>
-		<th scope="col">switch_puerta</th>
-		<th scope="col">acciones</th>
+      	<th scope="col">Anexo</th>
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>		
+		<th scope="col">Categor&iacute;a</th>
+		<th scope="col">Sap</th>
+		<th scope="col">Correo de voz</th>
+		<th scope="col">Claves</th>
+		<th scope="col">Modelo</th>
+		<th scope="col">Serie</th>
+		<th scope="col">Mac</th>
+		<th scope="col">Switch_puerta</th>
+		<th scope="col">Acciones</th>
       </tr>
       </thead>
       <tbody>

@@ -51,17 +51,17 @@ $rows = mysql_num_rows($result);
     <table id="tabla_datostecnicos" class="ui-widget ui-widget-content table table-striped table-bordered">
       <thead class="ui-widget-header">
       <tr>
-   		<th scope="col">anexo</th>	
-		<th scope="col">tipo</th>
-		<th scope="col">subtipo</th>
-		<th scope="col">categor&iacute;a</th>
-		<th scope="col">sap</th>
-		<th scope="col">correo de voz</th>
-		<th scope="col">claves</th>
-		<th scope="col">modelo</th>
-		<th scope="col">serie</th>
-		<th scope="col">mac</th>
-		<th scope="col">switch:puerta</th>
+   		<th scope="col">Anexo</th>	
+		<th scope="col">Tipo</th>
+		<th scope="col">Subtipo</th>
+		<th scope="col">Categor&iacute;a</th>
+		<th scope="col">Sap</th>
+		<th scope="col">Correo de voz</th>
+		<th scope="col">Claves</th>
+		<th scope="col">Modelo</th>
+		<th scope="col">Serie</th>
+		<th scope="col">Mac</th>
+		<th scope="col">Switch:puerta</th>
       </tr>
       </thead>
       <tbody>

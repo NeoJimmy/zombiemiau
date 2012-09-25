@@ -63,8 +63,8 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `faenas` WHERE `idfaenas` 
 <br>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-	<p><label><b>ciudad:</b></label><input type='text' name='ciudad' value='<?= stripslashes($row['ciudad']) ?>' class='required'><br>
-	<p><label><b>faena:</b></label><input type='text' name='faena' value='<?= stripslashes($row['faena']) ?>' class='required'><br>
+	<p><label><b>Ciudad:</b></label><input type='text' name='ciudad' value='<?= stripslashes($row['ciudad']) ?>' class='required'><br>
+	<p><label><b>Faena:</b></label><input type='text' name='faena' value='<?= stripslashes($row['faena']) ?>' class='required'><br>
 
 <p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->

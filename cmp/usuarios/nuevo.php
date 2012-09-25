@@ -89,7 +89,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
     ?>
     </select>
     <p>
-    <input class='btn btn-primary' style="position: absolute; left: -103px;" type='submit' value='Agregar usuario'></input><input type='hidden' value='1' name='submitted'></input></p>
+    <input class='btn btn-primary' style="position: absolute; left: -103px;" type='submit' value='Agregar usuario'><input type='hidden' value='1' name='submitted'></p>
     </form>
 
 </div>
