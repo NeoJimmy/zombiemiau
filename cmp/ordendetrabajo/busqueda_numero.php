@@ -106,6 +106,7 @@ if (isset($_POST['submitted'])) {
 		<th scope="col">Descripci&oacute;n</th>
 		<th scope="col">Observaciones</th>
 		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
+		<th scope="col">Nro OTT</th>
       </tr>
       </thead>
       <tbody>
@@ -113,23 +114,24 @@ if (isset($_POST['submitted'])) {
      for ($i = 0; $i < $rows; $i++)
      $ot[] = mysql_fetch_assoc($result);
    ?>
-	    <?php for ($i = 0; $i < $rows; $i++): ?>
+<?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
-	        <td><?php echo $ot[$i]['nombre']; ?></td>
-   	        <td><?php echo $ot[$i]['apellido']; ?></td>
-	        <td><?php echo $ot[$i]['anexo']; ?></td>
-	        <td><?php echo $ot[$i]['ciudad']; ?></td>
-	        <td><?php echo $ot[$i]['faena'] ?></td>	                       
-   	        <td><?php echo $ot[$i]['area']; ?></td>   	        
-	        <td><?php echo $ot[$i]['tipo_ot'] ?></td>
-	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
-	        <td><?php echo $ot[$i]['descripcion']; ?></td>
-	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
+        <td><?php echo $ot[$i]['nombre']; ?></td>
+        <td><?php echo $ot[$i]['apellido']; ?></td>
+        <td><?php echo $ot[$i]['anexo']; ?></td>
+        <td><?php echo $ot[$i]['ciudad']; ?></td>
+        <td><?php echo $ot[$i]['faena'] ?></td>	                       
+        <td><?php echo $ot[$i]['area']; ?></td>   	        
+        <td><?php echo $ot[$i]['tipo_ot'] ?></td>
+        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
+        <td><?php echo $ot[$i]['descripcion']; ?></td>
+        <td><?php echo $ot[$i]['observaciones']; ?></td>
+        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
+		<td><?php echo $ot[$i]['nro_ott']; ?></td>	        
 	 </tr>
-    <?php
-             endfor;
-    ?>
+<?php
+    endfor;
+?>
       </tbody>
     </table>
 <br>

@@ -45,18 +45,38 @@ if (isset($_POST['submitted'])) {
 		$nro_ott = $_POST['nro_ott'];		
 		$nro_ot = $_POST['nro_ot'];
 		
-		$query =  "UPDATE `orden_de_trabajo` SET `nro_ott`= '".$nro_ott."' WHERE  `idorden_de_trabajo`= $nro_ot " ;
-		$result = mysql_query($query) or die(mysql_error());
-	
-		if($result)
-			echo "<br>Se ha sido ingresado el n&uacute;mero de OTT correctamente.<br>";
+		//Vemos si la OT ya tiene asignado una OTT
+		$rs = mysql_query("SELECT `idott_generadas` FROM `ott_generadas` WHERE `orden_de_trabajo_id_orden_de_trabajo`=".$nro_ot) or die(mysql_error());
+		$row = mysql_fetch_row($rs);
+		
+		//Si la OT posee OTT
+		if(isset($row[0])){
+			$sql = "UPDATE `ott_generadas` SET `nro_ott` = '".$nro_ott."' WHERE `idott_generadas` = ".$row[0];
+			mysql_query($sql) or die(mysql_error());
+			echo (mysql_affected_rows()) ? "<br>Fila Editada.<br>" : "<br>Sin cambios. <br>";
+		//de lo contrario	
+		}else{
+			$sql = "INSERT INTO `ott_generadas` 
+			(`idott_generadas`, `orden_de_trabajo_id_orden_de_trabajo`, `nro_ott`) 
+			VALUES (NULL, $nro_ot, '$nro_ott');";
+		
+    		$result = mysql_query($sql) or die(mysql_error());
+    		if($result)
+    			echo "<br>Se ha sido ingresado el n&uacute;mero de OTT correctamente.<br>";
+		}
+		
+    	
+
 	}
+
 }
 	
-	//Parametro obtenido del combobox
-	$sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica` , `nro_ott` 
-	FROM `orden_de_trabajo`, `historial_ot`
-	WHERE  `estado` = 'EJECUCIÓN' AND `idorden_de_trabajo` = `historial_ot`.`orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
+    //Parametro obtenido del combobox
+     $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `nro_ott`
+       FROM `orden_de_trabajo`, `historial_ot`, `ott_generadas`
+       WHERE  `estado` = 'EJECUCIÓN' AND `idorden_de_trabajo` = `historial_ot`.`orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL AND `idorden_de_trabajo` = `ott_generadas`.`orden_de_trabajo_id_orden_de_trabajo`" ;    
+
+   //echo $sql."<br>";
 
    $result = mysql_query($sql) or die(mysql_error());
    $rows = mysql_num_rows($result);
@@ -112,7 +132,7 @@ if (isset($_POST['submitted'])) {
 	        <td><?php echo $ot[$i]['descripcion']; ?></td>
 	        <td><?php echo $ot[$i]['observaciones']; ?></td>
 	        <td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
-	        <td><?php echo $ot[$i]['nro_ott']; ?></td>
+	 		<td><?php echo $ot[$i]['nro_ott']; ?></td>
 	 </tr>
     <?php
     		endif;

@@ -98,7 +98,7 @@ mysql_query("SET NAMES 'utf8'");
 	    }
 	?>
 	</select></p>
-	<p><input type='submit' value='Buscar' class='btn btn-primary'></input><input type='hidden' value='1' name='submitted'></input>
+	<p><input type='submit' value='Buscar' class='btn btn-primary'><input type='hidden' value='1' name='submitted'>
 </form>
 
 <?php
@@ -110,11 +110,11 @@ if (isset($_POST['submitted'])) {
 
 	
 	if($subtipo != 'Todos'){
-         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado` 
+         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado`, `nro_ott` 
            FROM `orden_de_trabajo`, `historial_ot` 
            WHERE  `tipo_ot` = '$tipo' AND `subtipo_ot` = '$subtipo'  AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo` AND `termino` IS NULL " ;    
 	} else {
-		$sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado` 
+		$sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado`, `nro_ott`  
 		FROM `orden_de_trabajo`, `historial_ot` 
 		WHERE  `tipo_ot` = '$tipo' AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo` AND `termino` IS NULL " ;    	
 	}
@@ -134,6 +134,7 @@ if (isset($_POST['submitted'])) {
       <thead>
       <tr>
    		<th scope="col">Nro OT</th>
+		<th scope="col">Estado actual</th>   		
 		<th scope="col">Nombre</th>
 		<th scope="col">Apellido</th>		
 		<th scope="col">anexo</th>
@@ -145,7 +146,7 @@ if (isset($_POST['submitted'])) {
 		<th scope="col">Descripci&oacute;n</th>
 		<th scope="col">Observaciones</th>
 		<th scope="col">Evaluaci&oacute;n t&eacute;cnica</th>
-		<th scope="col">Estado actual</th>	
+		<th scope="col">Nro OTT</th>
       </tr>
       </thead>
       <tbody>
@@ -155,19 +156,20 @@ if (isset($_POST['submitted'])) {
    ?>
 	    <?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
-			<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
-	        <td><?php echo $ot[$i]['nombre']; ?></td>
-   	        <td><?php echo $ot[$i]['apellido']; ?></td>
-	        <td><?php echo $ot[$i]['anexo']; ?></td>
-	        <td><?php echo $ot[$i]['ciudad']; ?></td>
-	        <td><?php echo $ot[$i]['faena'] ?></td>	                       
-   	        <td><?php echo $ot[$i]['area']; ?></td>   	        
-	        <td><?php echo $ot[$i]['tipo_ot'] ?></td>
-	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
-	        <td><?php echo $ot[$i]['descripcion']; ?></td>
-	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        
-	        <td><?php echo $ot[$i]['estado']; ?></td>	        
+		<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
+        <td><?php echo $ot[$i]['estado']; ?></td>
+        <td><?php echo $ot[$i]['nombre']; ?></td>
+        <td><?php echo $ot[$i]['apellido']; ?></td>
+        <td><?php echo $ot[$i]['anexo']; ?></td>
+        <td><?php echo $ot[$i]['ciudad']; ?></td>
+        <td><?php echo $ot[$i]['faena'] ?></td>	                       
+        <td><?php echo $ot[$i]['area']; ?></td>   	        
+        <td><?php echo $ot[$i]['tipo_ot'] ?></td>
+        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
+        <td><?php echo $ot[$i]['descripcion']; ?></td>
+        <td><?php echo $ot[$i]['observaciones']; ?></td>
+        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        
+		<td><?php echo $ot[$i]['nro_ott']; ?></td>
 	 </tr>
     <?php
              endfor;

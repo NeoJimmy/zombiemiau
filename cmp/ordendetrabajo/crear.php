@@ -57,45 +57,47 @@ $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config
 mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
-
     if (isset($_POST['submitted'])) {
-    foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
+    	foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
 
-	$_POST['faena'] = str_replace("_", " ", $_POST['faena']);
-	$_POST['ciudad'] = str_replace("_", " ", $_POST['ciudad']);
-	$_POST['tipo'] = str_replace("_", " ", $_POST['tipo']);
-	$_POST['subtipo'] = str_replace("_", " ", $_POST['subtipo']);
-	
-    //Agregamos el elemento
-    $sql= "INSERT INTO `orden_de_trabajo`
-    (`idorden_de_trabajo`, `nombre`, `apellido`,  `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`)
-    VALUES (NULL, '{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['anexo']}', '{$_POST['ciudad']}', '{$_POST['faena']}', '{$_POST['area']}', '{$_POST['tipo']}', '{$_POST['subtipo']}', '{$_POST['descripcion']}', '{$_POST['observaciones']}');";
-    mysql_query($sql) or die(mysql_error());
-    //echo $sql.'<br>';
-    $id = mysql_insert_id();
-    
-    //Si la OT es generada por los admins de CMP, esta es validada inmediatamente, pasando al estado de Generacion OT
-    if($_SESSION['usuario']['perfil']=='operadora'){
-		$sql2 = "INSERT INTO `historial_ot`
-		(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
-		VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";	
-    } else if ($_SESSION['usuario']['perfil']=='admin_cmp' || $_SESSION['usuario']['perfil']=='admin_cmp2' || $_SESSION['usuario']['perfil']=='admin'){
-		$sql2 = "INSERT INTO `historial_ot`
-		(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
-		VALUES (NULL, $id, 'GENERACIÓN OT',NOW(), NULL, NULL);";
+		$_POST['faena'] = str_replace("_", " ", $_POST['faena']);
+		$_POST['ciudad'] = str_replace("_", " ", $_POST['ciudad']);
+		$_POST['tipo'] = str_replace("_", " ", $_POST['tipo']);
+		$_POST['subtipo'] = str_replace("_", " ", $_POST['subtipo']);
+		
+	    //Agregamos el elemento
+	    $sql= "INSERT INTO `orden_de_trabajo`
+	    (`idorden_de_trabajo`, `nombre`, `apellido`,  `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`)
+	    VALUES (NULL, '{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['anexo']}', '{$_POST['ciudad']}', '{$_POST['faena']}', '{$_POST['area']}', '{$_POST['tipo']}', '{$_POST['subtipo']}', '{$_POST['descripcion']}', '{$_POST['observaciones']}');";
+	    mysql_query($sql) or die(mysql_error());
+	    //echo $sql.'<br>';
+	    $id = mysql_insert_id();
+	    
+	    //Si la OT es generada por los admins de CMP, esta es validada inmediatamente, pasando al estado de Generacion OT
+	    if($_SESSION['usuario']['perfil']=='operadora'){
+			$sql2 = "INSERT INTO `historial_ot`
+			(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
+			VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";	
+	    } else if ($_SESSION['usuario']['perfil']=='admin_cmp' || $_SESSION['usuario']['perfil']=='admin_cmp2' || $_SESSION['usuario']['perfil']=='admin'){
+			$sql2 = "INSERT INTO `historial_ot`
+			(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
+			VALUES (NULL, $id, 'GENERACIÓN OT',NOW(), NULL, NULL);";
+    	}
+	   // echo $sql2.'<br>';
+	    mysql_query($sql2) or die(mysql_error());
+	    
+	    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+		mysql_query($sql3) or die(mysql_error());
+	    echo "Fila Agregada.<br>";
+	    echo "<a href='../index.php'>Volver al inicio</a><br><br>";
     }
-   // echo $sql2.'<br>';
-    mysql_query($sql2) or die(mysql_error());
-    
-    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
-	mysql_query($sql3) or die(mysql_error());
-    echo "Fila Agregada.<br>";
-    echo "<a href='../index.php'>Volver al inicio</a><br><br>";
-    }
-
+    //Se calcula el próximo id de la orden de trabajo.
+	$rs = mysql_query("SELECT MAX(`idorden_de_trabajo`) FROM `orden_de_trabajo`") or die(mysql_error());
+	$row = mysql_fetch_row($rs);
+	$nro_siguiente_ot = $row[0]+1;
 ?>
 
-<h2>Orden de trabajo Nº <?php echo $id;?></h2>
+<h2>Orden de trabajo Nº <?php echo $nro_siguiente_ot;?></h2>
 		<form id="solicitud" action='' method='POST'>
 
 		<fieldset>

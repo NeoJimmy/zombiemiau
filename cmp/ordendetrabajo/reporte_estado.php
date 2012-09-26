@@ -17,7 +17,7 @@ if (isset($_GET['estado'])) :
 	$estado = str_replace("_", " ", $_GET['estado']);
 	
     //Parametro obtenido del combobox
-         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`  
+         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `nro_ott`  
            FROM `orden_de_trabajo`, `historial_ot` 
            WHERE  `estado` = '$estado' AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
 
@@ -59,6 +59,7 @@ if (isset($_GET['estado'])) :
 		$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(16);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(16);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(16);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(16);
 		$objPHPExcel->getActiveSheet()->getStyle('D')->applyFromArray(
 			array(
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT),
@@ -71,8 +72,8 @@ if (isset($_GET['estado'])) :
 		//$objPHPExcel->getActiveSheet()->getStyle('D24')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 		
 		//Tipo de fuente
-		$objPHPExcel->getActiveSheet()->getStyle('A1:L100')->getFont()->setName('Arial');
-		$objPHPExcel->getActiveSheet()->getStyle('A1:L100')->getFont()->setSize(8);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:M100')->getFont()->setName('Arial');
+		$objPHPExcel->getActiveSheet()->getStyle('A1:M100')->getFont()->setSize(8);
 		$objPHPExcel->getActiveSheet()->getStyle('D2')->getFont()->setBold(true);
 		$objPHPExcel->getActiveSheet()->getStyle('D2')->getFont()->setUnderline(PHPExcel_Style_Font::UNDERLINE_SINGLE);
 		//$objPHPExcel->getActiveSheet()->getStyle('A5:A24')->getFont()->setBold(true);
@@ -92,9 +93,10 @@ if (isset($_GET['estado'])) :
 		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'Subtipo');
 		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'Descripción');
 		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'Observaciones');
+		$objPHPExcel->getActiveSheet()->setCellValue('M7', 'Nro OTT');
 		
 		//Propiedades de la cabecera de la tabla materiales
-		$objPHPExcel->getActiveSheet()->getStyle('B7:L7')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('B7:M7')->applyFromArray(
 			array(
 				'font'    => array('bold' => true),
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
@@ -122,11 +124,12 @@ if (isset($_GET['estado'])) :
 			$objPHPExcel->getActiveSheet()->setCellValue('J'.$index, $ot[$i]['subtipo_ot']);
 			$objPHPExcel->getActiveSheet()->setCellValue('K'.$index, $ot[$i]['descripcion']);
 			$objPHPExcel->getActiveSheet()->setCellValue('L'.$index, $ot[$i]['observaciones']);
+			$objPHPExcel->getActiveSheet()->setCellValue('M'.$index, $ot[$i]['nro_ott']);
 			$index++;
  		endfor;
 
 		//Borde de la tabla
-		$objPHPExcel->getActiveSheet()->getStyle('B'.$inicial.':L'.($index-1))->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('B'.$inicial.':M'.($index-1))->applyFromArray(
 			array(
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
 				'borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)),

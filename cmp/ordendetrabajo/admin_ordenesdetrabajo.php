@@ -62,9 +62,18 @@ mysql_query("SET NAMES 'utf8'");
 // Eliminar elemento
   if ( isset( $_GET['delete'] ) )
   {
+	$result = mysql_query("SELECT `idhistorial_ot` FROM `historial_ot` WHERE `orden_de_trabajo_idorden_de_trabajo` = ".$_GET['delete']) or die(mysql_error());
+	$rows = mysql_num_rows($result);
+	for ($i = 0; $i < $rows; $i++)
+		$id[] = mysql_fetch_assoc($result);
+  	for ($i = 0; $i < $rows; $i++){
+		$query = 'DELETE FROM `historial_ot_usuario` WHERE `historial_ot_idhistorial_ot` = '.$id[$i]['idhistorial_ot'];
+	  	mysql_query($query) or die(mysql_error());
+	}
+   
   	//Borramos historial
-  	$query = 'DELETE FROM historial_ot WHERE orden_de_trabajo_idorden_de_trabajo = '.$_GET['delete'];
-  	mysql_query($query);
+  	$query = 'DELETE FROM `historial_ot` WHERE `orden_de_trabajo_idorden_de_trabajo` = '.$_GET['delete'];
+  	mysql_query($query) or die(mysql_error());
     //Eliminar el archivo de OT asignado
     $directorio = '../public_html/upload/archivos';
 	$rs = mysql_query("SELECT `evaluacion_tecnica` FROM `orden_de_trabajo` WHERE `idorden_de_trabajo`= ".$_GET['delete']) or die(mysql_error());
@@ -73,7 +82,7 @@ mysql_query("SET NAMES 'utf8'");
 	unlink($directorio."/".$borrar_nombre);
 	//Borramos orden de trabajo
     $query = 'DELETE FROM orden_de_trabajo WHERE idorden_de_trabajo = '.$_GET['delete'];
-    mysql_query($query);
+    mysql_query($query) or die(mysql_error());
 	unset($_GET['delete']);
 	header('Location:admin_ordenesdetrabajo.php');
   }

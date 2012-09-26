@@ -14,7 +14,7 @@ mysql_query("SET NAMES 'utf8'");
 
 if (isset($_GET['from']) && isset($_GET['to'])) :
 
- 	$sql= "SELECT DISTINCT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `estado`, `inicio`, `observacion` 
+ 	$sql= "SELECT DISTINCT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `estado`, `inicio`, `observacion` , `nro_ott`
            FROM `orden_de_trabajo`, `historial_ot` 
            WHERE `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo` AND `inicio` BETWEEN STR_TO_DATE('".$_GET['from']."', '%d/%m/%Y')  AND STR_TO_DATE('".$_GET['to']."', '%d/%m/%Y')  AND `termino` IS NULL " ;    
 
@@ -58,6 +58,7 @@ if (isset($_GET['from']) && isset($_GET['to'])) :
 		$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(16);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(100);
 		$objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(100);
+		$objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(30);
 		$objPHPExcel->getActiveSheet()->getStyle('D')->applyFromArray(
 			array(
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT),
@@ -65,8 +66,8 @@ if (isset($_GET['from']) && isset($_GET['to'])) :
 		);
 		
 		//Tipo de fuente
-		$objPHPExcel->getActiveSheet()->getStyle('A1:N100')->getFont()->setName('Arial');
-		$objPHPExcel->getActiveSheet()->getStyle('A1:N100')->getFont()->setSize(8);
+		$objPHPExcel->getActiveSheet()->getStyle('A1:O100')->getFont()->setName('Arial');
+		$objPHPExcel->getActiveSheet()->getStyle('A1:O100')->getFont()->setSize(8);
 		$objPHPExcel->getActiveSheet()->getStyle('D2')->getFont()->setBold(true);
 		$objPHPExcel->getActiveSheet()->getStyle('D2')->getFont()->setUnderline(PHPExcel_Style_Font::UNDERLINE_SINGLE);
 		//$objPHPExcel->getActiveSheet()->getStyle('A5:A24')->getFont()->setBold(true);
@@ -90,9 +91,10 @@ if (isset($_GET['from']) && isset($_GET['to'])) :
 		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'Subtipo');
 		$objPHPExcel->getActiveSheet()->setCellValue('M7', 'Descripción');
 		$objPHPExcel->getActiveSheet()->setCellValue('N7', 'Observaciones');
+		$objPHPExcel->getActiveSheet()->setCellValue('O7', 'Nro OTT');
 		
 		//Propiedades de la cabecera de la tabla materiales
-		$objPHPExcel->getActiveSheet()->getStyle('B7:N7')->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('B7:O7')->applyFromArray(
 			array(
 				'font'    => array('bold' => true),
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
@@ -123,11 +125,12 @@ if (isset($_GET['from']) && isset($_GET['to'])) :
 			$objPHPExcel->getActiveSheet()->setCellValue('L'.$index, $ot[$i]['subtipo_ot']);
 			$objPHPExcel->getActiveSheet()->setCellValue('M'.$index, $ot[$i]['descripcion']);
 			$objPHPExcel->getActiveSheet()->setCellValue('N'.$index, $ot[$i]['observaciones']);
+			$objPHPExcel->getActiveSheet()->setCellValue('O'.$index, $ot[$i]['nro_ott']);
 			$index++;
  		endfor;
 
 		//Borde de la tabla
-		$objPHPExcel->getActiveSheet()->getStyle('B'.$inicial.':N'.($index-1))->applyFromArray(
+		$objPHPExcel->getActiveSheet()->getStyle('B'.$inicial.':O'.($index-1))->applyFromArray(
 			array(
 				'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
 				'borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)),
