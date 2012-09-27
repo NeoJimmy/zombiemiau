@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-09-2012 a las 21:42:25
--- Versión del servidor: 5.5.25a
--- Versión de PHP: 5.4.4
+-- Tiempo de generación: 01-08-2012 a las 22:15:00
+-- Versión del servidor: 5.5.16
+-- Versión de PHP: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -45,6 +45,7 @@ INSERT INTO `estado_ot` (`idestado_ot`, `estado`) VALUES
 (7, 'GENERACIÓN OTT'),
 (8, 'EJECUCIÓN'),
 (9, 'CERRADA'),
+(10, 'VALIDACIÓN ENTEL'),
 (11, 'RECHAZADA');
 
 -- --------------------------------------------------------
@@ -668,7 +669,7 @@ CREATE TABLE IF NOT EXISTS `guia_personas` (
   `localidad` varchar(45) DEFAULT NULL,
   `centro_de_costo` int(11) DEFAULT NULL,
   PRIMARY KEY (`idguia_personas`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=282 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=284 ;
 
 --
 -- Volcado de datos para la tabla `guia_personas`
@@ -955,7 +956,9 @@ INSERT INTO `guia_personas` (`idguia_personas`, `anexo`, `nombre`, `apellido`, `
 (278, 8175, 'VICTOR', 'VILLOUTA', '0', 'ROMERAL', 115084),
 (279, 8378, 'FERNANDO', 'ZAMORA', 'MATERIALES', 'ROMERAL', 115078),
 (280, 5225, 'RICARDO', 'ZAMORANO', '0', 'LOS COLORADOS', 9008),
-(281, 5617, 'JUAN', 'ZEPEDA', '0', 'LOS COLORADOS', NULL);
+(281, 5617, 'JUAN', 'ZEPEDA', '0', 'LOS COLORADOS', NULL),
+(282, 5814, 'HERNAN', 'ZULETA', '0', 'PLANTA PELLETS', 115098),
+(283, 5852, 'FRANK', 'ZULETA', '0', 'PLANTA PELLETS', 115100);
 
 -- --------------------------------------------------------
 
@@ -972,40 +975,108 @@ CREATE TABLE IF NOT EXISTS `historial_ot` (
   `observacion` text,
   PRIMARY KEY (`idhistorial_ot`,`orden_de_trabajo_idorden_de_trabajo`),
   KEY `fk_historial_ot_orden_de_trabajo` (`orden_de_trabajo_idorden_de_trabajo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=124 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
 
 --
 -- Volcado de datos para la tabla `historial_ot`
 --
 
 INSERT INTO `historial_ot` (`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`) VALUES
-(120, 28, 'GENERACIÓN OT', '2012-09-25 18:32:52', '2012-09-25 18:40:18', NULL),
-(121, 28, 'EJECUCIÓN', '2012-09-25 18:40:18', '2012-09-25 18:45:56', NULL),
-(122, 28, 'EVALUACIÓN COMERCIAL', '2012-09-25 18:45:56', '2012-09-25 18:46:06', NULL),
-(123, 28, 'EJECUCIÓN', '2012-09-25 18:46:06', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `historial_ot_usuario`
---
-
-CREATE TABLE IF NOT EXISTS `historial_ot_usuario` (
-  `idhistorial_ot_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `historial_ot_idhistorial_ot` int(11) NOT NULL,
-  `usuario` varchar(50) NOT NULL,
-  PRIMARY KEY (`idhistorial_ot_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
-
---
--- Volcado de datos para la tabla `historial_ot_usuario`
---
-
-INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES
-(6, 120, 'admin'),
-(7, 121, 'admin'),
-(8, 122, 'admin'),
-(9, 123, 'admin');
+(1, 5, 'CREADA', '2012-05-23 02:55:35', '2012-05-24 18:40:39', NULL),
+(2, 6, 'CREADA', '2012-05-23 03:00:27', '2012-05-25 12:39:33', NULL),
+(3, 5, 'VALIDACIÓN', '2012-05-24 18:40:39', '2012-05-24 18:41:08', NULL),
+(4, 5, 'ASIGNACIÓN', '2012-05-24 18:41:08', '2012-05-24 18:41:21', NULL),
+(5, 5, 'EVALUACIÓN TÉCNICA', '2012-05-24 18:41:21', '2012-05-24 18:42:10', NULL),
+(6, 5, 'EVALUACIÓN COMERCIAL', '2012-05-24 18:42:10', '2012-06-07 17:20:15', NULL),
+(7, 6, 'VALIDACIÓN', '2012-05-25 12:39:33', '2012-06-15 13:40:12', NULL),
+(8, 5, 'APROBACIÓN CMP', '2012-06-07 17:20:15', '2012-06-07 19:05:55', NULL),
+(9, 5, 'GENERA OTT', '2012-06-07 19:05:55', NULL, NULL),
+(10, 7, 'CREADA', '2012-06-08 10:23:05', '2012-06-25 22:27:44', NULL),
+(11, 8, 'CREADA', '2012-06-08 11:20:42', '2012-07-05 21:48:59', NULL),
+(12, 6, 'ASIGNACIÓN', '2012-06-15 13:40:12', '2012-06-24 16:10:58', NULL),
+(13, 6, 'ASIGNACIÓN', '2012-06-24 16:10:58', '2012-06-24 20:54:27', NULL),
+(14, 9, 'CREADA', '2012-06-24 19:21:58', '2012-06-24 19:22:12', NULL),
+(15, 9, 'ASIGNACIÓN', '2012-06-24 19:22:12', '2012-06-26 10:52:45', NULL),
+(16, 6, 'EVALUACIÓN TÉCNICA', '2012-06-24 20:54:27', '2012-06-25 23:39:09', NULL),
+(17, 7, 'ASIGNACIÓN', '2012-06-25 22:27:44', '2012-06-25 23:58:26', NULL),
+(18, 6, 'APROBACIÓN CMP', '2012-06-25 23:39:09', '2012-06-25 23:39:23', NULL),
+(19, 6, 'GENERACIÓN OTT', '2012-06-25 23:39:23', '2012-06-25 23:41:53', NULL),
+(20, 6, 'GENERACIÓN OTT', '2012-06-25 23:41:53', '2012-06-26 00:03:04', NULL),
+(21, 7, 'EVALUACIÓN TÉCNICA', '2012-06-25 23:58:26', '2012-06-26 00:04:39', NULL),
+(22, 6, 'GENERACIÓN OTT', '2012-06-26 00:03:05', '2012-06-26 00:03:09', NULL),
+(23, 6, 'GENERACIÓN OTT', '2012-06-26 00:03:09', '2012-07-10 12:27:50', NULL),
+(24, 7, 'EVALUACIÓN COMERCIAL', '2012-06-26 00:04:39', '2012-06-26 00:04:56', NULL),
+(25, 7, 'EVALUACIÓN COMERCIAL', '2012-06-26 00:04:56', '2012-06-26 00:05:09', NULL),
+(26, 7, 'EVALUACIÓN COMERCIAL', '2012-06-26 00:05:09', '2012-06-26 00:06:31', NULL),
+(27, 7, 'APROBACIÓN CMP', '2012-06-26 00:06:31', '2012-06-26 00:10:09', NULL),
+(28, 7, 'GENERACIÓN OTT', '2012-06-26 00:10:09', NULL, NULL),
+(29, 9, 'EVALUACIÓN TÉCNICA', '2012-06-26 10:52:45', '2012-06-26 11:05:38', NULL),
+(30, 9, 'EVALUACIÓN COMERCIAL', '2012-06-26 11:05:38', '2012-06-26 11:06:22', NULL),
+(31, 9, 'APROBACIÓN CMP', '2012-06-26 11:06:22', '2012-06-26 11:06:44', NULL),
+(32, 9, 'GENERACIÓN OTT', '2012-06-26 11:06:44', NULL, NULL),
+(33, 8, 'RECHAZADA', '2012-07-05 21:48:59', '2012-07-05 21:49:55', 'comentario'),
+(34, 8, 'RECHAZADA', '2012-07-05 21:49:55', NULL, 'comentario'),
+(35, 10, 'CREADA', '2012-07-06 09:53:48', '2012-07-06 09:54:08', NULL),
+(36, 10, 'ASIGNACIÓN', '2012-07-06 09:54:08', '2012-07-06 09:56:45', ''),
+(37, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 09:56:45', '2012-07-06 10:07:50', NULL),
+(38, 10, 'ASIGNACIÓN', '2012-07-06 10:07:50', '2012-07-06 10:32:29', NULL),
+(39, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 10:32:29', '2012-07-06 10:37:15', NULL),
+(40, 10, 'ASIGNACIÓN', '2012-07-06 10:37:15', '2012-07-06 10:37:30', NULL),
+(41, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 10:37:30', '2012-07-06 10:40:42', NULL),
+(42, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 10:40:42', '2012-07-06 10:40:49', NULL),
+(43, 10, 'ASIGNACIÓN', '2012-07-06 10:40:49', '2012-07-06 10:44:50', NULL),
+(44, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 10:44:50', '2012-07-06 11:15:50', NULL),
+(45, 10, '', '2012-07-06 11:15:50', '2012-07-06 11:16:49', NULL),
+(46, 10, '', '2012-07-06 11:16:49', '2012-07-06 11:16:52', NULL),
+(47, 10, '', '2012-07-06 11:16:52', '2012-07-06 11:19:30', NULL),
+(48, 10, 'EVALUACIÓN COMERCIAL', '2012-07-06 11:19:30', '2012-07-06 11:21:01', NULL),
+(49, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 11:21:01', '2012-07-06 11:21:33', NULL),
+(50, 10, 'EVALUACIÓN COMERCIAL', '2012-07-06 11:21:33', '2012-07-06 11:25:36', NULL),
+(51, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 11:25:36', '2012-07-06 11:25:53', NULL),
+(52, 10, 'EVALUACIÓN COMERCIAL', '2012-07-06 11:25:53', '2012-07-06 11:26:41', NULL),
+(53, 10, 'EVALUACIÓN TÉCNICA', '2012-07-06 11:26:41', '2012-07-06 11:26:53', NULL),
+(54, 10, 'EVALUACIÓN COMERCIAL', '2012-07-06 11:26:53', '2012-07-06 11:27:35', NULL),
+(55, 10, 'EVALUACIÓN COMERCIAL', '2012-07-06 11:27:35', '2012-07-06 12:51:52', NULL),
+(56, 10, 'APROBACIÓN CMP', '2012-07-06 12:51:52', '2012-07-06 12:54:05', NULL),
+(57, 10, 'GENERACIÓN OTT', '2012-07-06 12:54:05', NULL, ''),
+(58, 11, 'CREADA', '2012-07-09 23:13:47', '2012-07-09 23:13:59', NULL),
+(59, 11, 'GENERACIÓN OT', '2012-07-09 23:13:59', '2012-07-09 23:15:53', ''),
+(60, 11, 'EVALUACIÓN TÉCNICA', '2012-07-09 23:15:53', '2012-07-10 00:06:15', NULL),
+(61, 11, 'EVALUACIÓN COMERCIAL', '2012-07-10 00:06:15', '2012-07-10 00:42:12', NULL),
+(62, 11, 'APROBACIÓN CMP', '2012-07-10 00:42:12', '2012-07-10 00:42:46', NULL),
+(63, 11, 'EVALUACIÓN COMERCIAL', '2012-07-10 00:42:46', '2012-07-10 00:45:41', NULL),
+(64, 11, 'APROBACIÓN CMP', '2012-07-10 00:45:41', '2012-07-10 01:01:42', NULL),
+(65, 11, 'GENERACIÓN OTT', '2012-07-10 01:01:42', '2012-07-10 01:26:41', 'aaaa'),
+(66, 11, 'EJECUCIÓN', '2012-07-10 01:26:41', '2012-07-10 01:48:06', NULL),
+(67, 11, 'EJECUCIÓN', '2012-07-10 01:48:06', '2012-07-13 17:17:07', 'aaaaaaqqqq'),
+(68, 6, 'EJECUCIÓN', '2012-07-10 12:27:50', '2012-07-30 11:36:00', NULL),
+(69, 11, 'VALIDACIÓN CMP', '2012-07-13 17:17:07', NULL, NULL),
+(70, 12, 'CREADA', '2012-07-13 17:18:29', '2012-07-13 17:21:10', NULL),
+(71, 12, 'GENERACIÓN OT', '2012-07-13 17:21:10', '2012-07-13 17:21:49', ''),
+(72, 12, 'CREADA', '2012-07-13 17:21:49', '2012-07-13 17:22:04', NULL),
+(73, 12, 'GENERACIÓN OT', '2012-07-13 17:22:04', NULL, ''),
+(74, 13, 'CREADA', '2012-07-19 10:49:27', '2012-07-19 10:49:50', NULL),
+(75, 13, 'GENERACIÓN OT', '2012-07-19 10:49:50', '2012-07-19 10:51:20', ''),
+(76, 13, 'EVALUACIÓN TÉCNICA', '2012-07-19 10:51:20', '2012-07-19 10:53:07', NULL),
+(77, 13, 'EVALUACIÓN COMERCIAL', '2012-07-19 10:53:07', '2012-07-19 11:03:59', NULL),
+(78, 13, 'EVALUACIÓN TÉCNICA', '2012-07-19 11:03:59', '2012-07-19 11:04:05', NULL),
+(79, 13, 'EVALUACIÓN TÉCNICA', '2012-07-19 11:04:05', '2012-07-19 11:04:37', NULL),
+(80, 13, 'GENERACIÓN OT', '2012-07-19 11:04:37', '2012-07-19 11:05:31', NULL),
+(81, 13, 'EVALUACIÓN TÉCNICA', '2012-07-19 11:05:31', '2012-07-19 11:05:45', NULL),
+(82, 13, 'EVALUACIÓN COMERCIAL', '2012-07-19 11:05:45', '2012-07-19 11:18:59', NULL),
+(83, 13, 'APROBACIÓN CMP', '2012-07-19 11:18:59', '2012-07-19 11:22:05', NULL),
+(84, 13, 'GENERACIÓN OTT', '2012-07-19 11:22:05', '2012-07-19 11:24:21', ''),
+(85, 13, 'EJECUCIÓN', '2012-07-19 11:24:21', '2012-07-30 17:28:51', NULL),
+(86, 14, 'CREADA', '2012-07-29 02:38:21', '2012-07-29 02:38:38', NULL),
+(87, 14, 'GENERACIÓN OT', '2012-07-29 02:38:38', '2012-07-29 02:39:47', ''),
+(88, 14, 'EVALUACIÓN TÉCNICA', '2012-07-29 02:39:47', '2012-07-29 02:40:12', NULL),
+(89, 14, 'EVALUACIÓN COMERCIAL', '2012-07-29 02:40:12', NULL, NULL),
+(90, 6, 'CERRADA', '2012-07-30 11:36:00', NULL, 'comentario de cierre de la orden'),
+(91, 15, 'GENERACIÓN OT', '2012-07-30 13:27:54', NULL, NULL),
+(92, 17, 'GENERACIÓN OT', '2012-07-30 15:33:56', NULL, NULL),
+(93, 13, 'EJECUCIÓN', '2012-07-30 17:28:51', '2012-07-30 17:30:06', 'nuevo estado de ejecución'),
+(94, 13, 'CERRADA', '2012-07-30 17:30:06', NULL, 'comentario'),
+(95, 18, 'GENERACIÓN OT', '2012-07-30 17:31:44', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1026,16 +1097,28 @@ CREATE TABLE IF NOT EXISTS `orden_de_trabajo` (
   `descripcion` text,
   `observaciones` text,
   `evaluacion_tecnica` varchar(300) DEFAULT NULL,
-  `nro_ott` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idorden_de_trabajo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Volcado de datos para la tabla `orden_de_trabajo`
 --
 
-INSERT INTO `orden_de_trabajo` (`idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `nro_ott`) VALUES
-(28, 'Juan Francisco', 'Guerra', 2534, 'La Serena', 'Of. Generales', 'Laborum', 'Normal', 'Instalación', 'asd', 'asd', NULL, 'T-71200961610.0002');
+INSERT INTO `orden_de_trabajo` (`idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`) VALUES
+(5, 'Juan Francisco', 'Perez', 2323, 'LA SERENA', 'OF. GENERALES', 'cisternas', 'NORMAL', 'Instalación', 'normal', 'normal', NULL),
+(6, 'Juan Francisco', 'Perez', 2323, 'LA SERENA', 'OF. GENERALES', 'cisternas', 'NORMAL', 'Instalación', 'Instalar 2 líneas telefónicas en planta Beneficio para asistente adm. Eleomar Lemus, otro en Prevención de Riesgos Algarrobo', 'asd', NULL),
+(7, 'Jicemimicem', 'Reja', 0, 'CALAMA', 'GEOLOGIA', 'Dilocefap', 'EMERGENCIA', 'Evaluación', 'honygygagum tipirafypoko votu jadu xisecakahak rohec nolybaqih', 'tylecuvime vexokevep jotube hogylylofavo caniceze tylototulo', NULL),
+(8, 'Commodi', 'Quo dolore', 0, 'GUARELLO', 'ISLA GUARELLO', 'Non maxime in tempore quae', 'EMERGENCIA', 'Reposición Redes CMP', 'Qui sit, tempore, totam id dolores iure asperiores', 'Debitis suscipit temporibus dolor exercitationem perspiciatis', NULL),
+(9, 'Fuga Nostrud', 'In dolorum', 0, 'CALAMA', 'GUAYACAN', 'Laborum', 'EMERGENCIA', 'Falla', 'Saepe a commodo', 'Quas excepteur', NULL),
+(10, 'Velit tenetur', 'Nesciun', 0, 'CALAMA', 'GEOLOGIA', 'Earum nobi', 'EMERGENCIA', 'Evaluación', 'Porro voluptate laboriosam, exercitation proiden', 'Occaecat sapiente accusamus est', 'Libro4.xlsx'),
+(11, 'Aut tenetur aut nihil elit', 'Duis nulla', 555, 'CALAMA', 'COMPRAS', 'Dolor expedita', 'EMERGENCIA', 'Modificación', 'Aspernatur consequatur culpa', 'Ea sunt dolor eligendi laborum possimus, aut debitis inventore lorem dicta distinct', 'ff2.xlsx'),
+(12, 'Pariatur Facere', 'Voluptatem id', 0, 'CALAMA', 'GEOLOGIA', 'Est cumque', 'EMERGENCIA', 'Modificación', 'Ipsam asperiores doloremque commodo occaecat hic', 'Assumenda minus ut quae in ipsum', NULL),
+(13, 'Est aut', 'Nostrum', 0, 'CALAMA', 'ROMERAL', 'Sint minim', 'EMERGENCIA', 'Programación', 'Eos, qui esse', 'Id ipsum, distinctio', 'ff3.xlsx'),
+(14, 'Hic nisi', 'Eius illum', 0, 'COPIAPO', 'ROMERAL', 'Quia obcaecati anim in iusto', 'EMERGENCIA', 'Modificación', 'Minima minim ipsum', 'Aut explicabo. Voluptatem', 'fff5.xlsx'),
+(15, 'Possimus', 'Assumenda', 2323, 'LA SERENA', 'OF. GENERALES', 'Ut ut', 'Normal', 'Modificación', 'Excepturi animi', 'Veritatis exercitationem', NULL),
+(16, 'Juan Francisco', 'Perez', 2324, 'La Serena', 'Of. Generales', 'cisternas', 'Normal', 'Instalación', '1234', '1234', NULL),
+(17, 'Juan Francisco', 'Perez', 2324, 'La Serena', 'Of. Generales', 'cisternas', 'Normal', 'Instalación', '1234', '1234', NULL),
+(18, 'Juan Francisco2', 'Guerra', 2323, 'La Serena', 'Of. Generales', 'Dilocefap', 'Normal', 'Instalación', 'algo', 'algo', NULL);
 
 -- --------------------------------------------------------
 
