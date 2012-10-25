@@ -1,6 +1,6 @@
 <div id="header">
 
-<h1><img src="http://localhost/cmp/images/lwis.celebrity/logo_lwis.png" alt="LWIS.net"> Control de &oacute;rdenes de trabajo - Compañ&iacute;a Minera del Pac&iacute;fico</h1>
+<h1><img src="http://localhost/cmp/images/lwis.celebrity/logo_cmp.png" style="max-width: 100px;vertical-align:top;" alt="CMP"> Control de &oacute;rdenes de trabajo - Compañ&iacute;a Minera del Pac&iacute;fico</h1>
 
 <!--<img alt="portal de la subgerencia de calidad" class="banner" src="http://localhost/obras/img/bannerentel.png"></img>-->
 <!-- Beginning of compulsory code below -->
@@ -63,9 +63,9 @@
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_comercial'):?>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/evaluacion_comercial.php">Evaluaci&oacute;n comercial</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/generar_ott.php">Generar OTT</a></li>
-					<li><a href="http://localhost/cmp/ordendetrabajo/entel/ingresar_ott.php">Ingresar n&uacute;mero de OTT</a></li>
 					<?php endif; ?>
 					<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin')) :?>
+					<li><a href="http://localhost/cmp/ordendetrabajo/entel/ingresar_ott.php">Ingresar n&uacute;mero de OTT</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/cambiarestado.php">Cambiar estado de Orden</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/actualizar_ejecucion.php">Actualizar ejecuci&oacute;n</a></li>
 					<li><a href="http://localhost/cmp/ordendetrabajo/entel/cerrar_orden.php">Cerrar Orden</a></li>
@@ -73,7 +73,7 @@
 				</ul>
 			</li>
 			<?php endif; ?>
-			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || $_SESSION['usuario']['perfil']=='evaluador_tecnico'):?>
+			<?php  if(isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil']=='admin') || ($_SESSION['usuario']['perfil']=='evaluador_tecnico') || ($_SESSION['usuario']['perfil']=='admin_cmp')):?>
 			<li class="dir"><strong>B&uacute;squeda</strong>
 				<ul>
 					<li><a href="http://localhost/cmp/ordendetrabajo/busqueda_numero.php">Por n&uacute;mero</a></li>

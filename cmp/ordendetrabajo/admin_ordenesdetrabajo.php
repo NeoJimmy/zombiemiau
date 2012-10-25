@@ -142,7 +142,7 @@ $rows = mysql_num_rows($result);
 			<td><?php echo $ot[$i]['subtipo_ot']; ?></td>
 			<td><?php echo $ot[$i]['descripcion']; ?></td>
 			<td><?php echo $ot[$i]['observaciones']; ?></td>
-			<td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>
+			<td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>
             <td>
             <div id="accion">
             <ul>

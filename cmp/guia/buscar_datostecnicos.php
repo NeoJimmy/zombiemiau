@@ -68,7 +68,6 @@ $rows = mysql_num_rows($result);
    		<th scope="col">Anexo</th>	
 		<th scope="col">Tipo</th>
 		<th scope="col">Subtipo</th>
-		<th scope="col">Categor&iacute;a</th>
 		<th scope="col">Sap</th>
 		<th scope="col">Correo de voz</th>
 		<th scope="col">Claves</th>
@@ -88,7 +87,6 @@ $rows = mysql_num_rows($result);
 	        <td><?php echo $agenda[$i]['anexo']; ?></td>
 	        <td><?php echo $agenda[$i]['tipo']; ?></td>
    	        <td><?php echo $agenda[$i]['subtipo']; ?></td>
-   	        <td><?php echo $agenda[$i]['categoria']; ?></td>
    	        <td><?php echo $agenda[$i]['sap']; ?></td>
    	        <td><?php echo $agenda[$i]['correo_de_voz']; ?></td>
 	        <td><?php echo $agenda[$i]['claves'] ?></td>

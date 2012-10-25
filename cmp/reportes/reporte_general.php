@@ -5,6 +5,12 @@
 <head>
   <!--cabecera estandar-->
   <?php include ("../include/head.php")?>
+    <script type="text/javascript" src="../js/jquery.quicksearch.js"></script>
+        <script type="text/javascript">
+      $(function () {
+                                $('input#id_busqueda').quicksearch('table#tabla_ot tbody tr');
+                        });
+  </script>
 </head>
 <body>
 
@@ -29,6 +35,13 @@ mysql_query("SET NAMES 'utf8'");
 ?>
 
 <h2>Reporte general</h2>
+
+<p>Ingrese algún patrón a buscar:</p>
+<form action="#">
+    <fieldset>
+        <input type="text" name="search" value="" id="id_busqueda" placeholder="Buscar" autofocus></input>
+    </fieldset>
+</form>
 
 <?php
 
@@ -56,14 +69,16 @@ if (isset($_POST['submitted'])) {
       <tr>
       	<th scope="col">Nro de OT</th>
       	<th scope="col">Estado</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Anexo</th>
       	<th scope="col">Creaci&oacute;n de OT</th>
       	<th scope="col">Inicio del estado actual</th>
       	<th scope="col">Ciudad</th>
-		<th scope="col">Lugar</th>
-		<th scope="col">Tipo</th>
-		<th scope="col">Subtipo</th>
-		<th scope="col">Descripci&oacute;n</th>
-		<th scope="col">Observaci&oacute;n del estado actual</th>
+    		<th scope="col">Faena</th>
+    		<th scope="col">Tipo</th>
+    		<th scope="col">Subtipo</th>
+    		<th scope="col">Descripci&oacute;n</th>
+    		<th scope="col">Observaci&oacute;n del estado actual</th>
       </tr>
       </thead>
       <tbody>
@@ -82,6 +97,8 @@ if (isset($_POST['submitted'])) {
 	<tr>
 		<td><?php echo $ot[$i]['idorden_de_trabajo'];?></td>
 		<td><?php echo $ot[$i]['estado']; ?></td>
+    <td><?php echo $ot[$i]['nombre']." ".$ot[$i]['apellido']; ?></td>
+    <td><?php echo $ot[$i]['anexo']; ?></td>
 		<td><?php $date = new DateTime($row[0]); echo $date->format('d/m/Y'); ?></td>
 		<td><?php $date = new DateTime($ot[$i]['inicio']); echo $date->format('d/m/Y'); ?></td>		
         <td><?php echo $ot[$i]['ciudad']; ?></td>

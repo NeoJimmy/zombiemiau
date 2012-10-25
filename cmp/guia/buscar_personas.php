@@ -65,11 +65,11 @@ $rows = mysql_num_rows($result);
       <thead class="ui-widget-header">
       <tr>
       	<th scope="col">Anexo</th>
-		<th scope="col">Nombre</th>
-		<th scope="col">Apellido</th>		
-		<th scope="col">Unidad</th>
-		<th scope="col">Localidad</th>
-		<th scope="col">Centro de costo</th>
+    		<th scope="col">Nombre</th>
+    		<th scope="col">Apellido</th>		
+    		<th scope="col">Unidad</th>
+    		<th scope="col">Localidad</th>
+    		<th scope="col">Centro de costo</th>
       </tr>
       </thead>
       <tbody>
@@ -79,12 +79,12 @@ $rows = mysql_num_rows($result);
    ?>
 	    <?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
-	       	<td><?php echo $agenda[$i]['anexo']; ?></td>	
+     	<td><?php echo $agenda[$i]['anexo']; ?></td>	
  			<td><?php echo $agenda[$i]['nombre']; ?></td>
-   	        <td><?php echo $agenda[$i]['apellido']; ?></td>
-   	        <td><?php echo $agenda[$i]['unidad']; ?></td>   	        
-	        <td><?php echo $agenda[$i]['localidad']; ?></td>
-	        <td><?php echo $agenda[$i]['centro_de_costo'] ?></td>
+      <td><?php echo $agenda[$i]['apellido']; ?></td>
+      <td><?php echo $agenda[$i]['unidad']; ?></td>   	        
+      <td><?php echo $agenda[$i]['localidad']; ?></td>
+      <td><?php echo $agenda[$i]['centro_de_costo'] ?></td>
 	</tr>
         
     <?php

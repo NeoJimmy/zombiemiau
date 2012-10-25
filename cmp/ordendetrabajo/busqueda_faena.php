@@ -149,6 +149,7 @@ if (isset($_POST['submitted'])) {
 <?php for ($i = 0; $i < $rows; $i++): ?>
 	<tr>	
 		<td><?php echo $ot[$i]['idorden_de_trabajo']; ?></td>
+		<td><?php echo $ot[$i]['estado']; ?></td>
         <td><?php echo $ot[$i]['nombre']; ?></td>
         <td><?php echo $ot[$i]['apellido']; ?></td>
         <td><?php echo $ot[$i]['anexo']; ?></td>
@@ -159,8 +160,7 @@ if (isset($_POST['submitted'])) {
         <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
         <td><?php echo $ot[$i]['descripcion']; ?></td>
         <td><?php echo $ot[$i]['observaciones']; ?></td>
-        <td><?php echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        
-        <td><?php echo $ot[$i]['estado']; ?></td>
+        <td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>	        
 		<td><?php echo $ot[$i]['nro_ott']; ?></td>       
 	 </tr>
     <?php

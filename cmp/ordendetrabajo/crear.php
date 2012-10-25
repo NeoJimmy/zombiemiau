@@ -73,21 +73,39 @@ mysql_query("SET NAMES 'utf8'");
 	    //echo $sql.'<br>';
 	    $id = mysql_insert_id();
 	    
-	    //Si la OT es generada por los admins de CMP, esta es validada inmediatamente, pasando al estado de Generacion OT
+	    //En caso de que sea generada por operadora, la OT queda en estado CREADA
 	    if($_SESSION['usuario']['perfil']=='operadora'){
+	   	    $sql2 = "INSERT INTO `historial_ot`
+				(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
+				VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";	
+	   	    mysql_query($sql2) or die(mysql_error());
+	   	    
+	   	    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+			mysql_query($sql3) or die(mysql_error());
+		}
+
+	    //Si la OT es generada por los admins de CMP, esta es validada inmediatamente, pasando al estado de Generacion OT
+		if ($_SESSION['usuario']['perfil']=='admin_cmp' || $_SESSION['usuario']['perfil']=='admin_cmp2' || $_SESSION['usuario']['perfil']=='admin') {
+		    $sql2 = "INSERT INTO `historial_ot`
+				(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
+				VALUES (NULL, $id, 'CREADA',NOW(), NOW(), NULL);";	
+   	    	mysql_query($sql2) or die(mysql_error());
+   	    
+	   	    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+			mysql_query($sql3) or die(mysql_error());
+
 			$sql2 = "INSERT INTO `historial_ot`
-			(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
-			VALUES (NULL, $id, 'CREADA',NOW(), NULL, NULL);";	
-	    } else if ($_SESSION['usuario']['perfil']=='admin_cmp' || $_SESSION['usuario']['perfil']=='admin_cmp2' || $_SESSION['usuario']['perfil']=='admin'){
-			$sql2 = "INSERT INTO `historial_ot`
-			(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
-			VALUES (NULL, $id, 'GENERACIÓN OT',NOW(), NULL, NULL);";
+				(`idhistorial_ot`, `orden_de_trabajo_idorden_de_trabajo`, `estado`, `inicio`, `termino`, `observacion`)
+				VALUES (NULL, $id, 'GENERACIÓN OT',NOW(), NULL, NULL);";
+			mysql_query($sql2) or die(mysql_error());
+			
+   	    	$sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
+			mysql_query($sql3) or die(mysql_error());
+
     	}
 	   // echo $sql2.'<br>';
-	    mysql_query($sql2) or die(mysql_error());
 	    
-	    $sql3 = "INSERT INTO `historial_ot_usuario` (`idhistorial_ot_usuario`, `historial_ot_idhistorial_ot`, `usuario`) VALUES (NULL, ".mysql_insert_id().", '".$_SESSION['usuario']['nombre']."');";
-		mysql_query($sql3) or die(mysql_error());
+	    
 	    echo "Fila Agregada.<br>";
 	    echo "<a href='../index.php'>Volver al inicio</a><br><br>";
     }

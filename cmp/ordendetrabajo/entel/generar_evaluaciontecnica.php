@@ -27,12 +27,13 @@ mysql_query("SET NAMES 'utf8'");
     <p><input name="file" type="file"></p>
     <p>(archivo con extensi&oacute;n *.xlsx o *.xls)
     <p><input type='submit' value='Guardar' class="btn btn-primary"><input type='hidden' value='1' name='submitted'>
+</form>		
 <?php
 
 if (isset($_POST['submitted'])) {
 	foreach($_POST AS $key => $value) { $_POST[$key] = mysql_real_escape_string($value); }
 	
-	//Subir evaluacion tecnica.
+	//Sube la evaluación técnica y actualiza la evaluación técnica de la orden de trabajo
 	if(isset($_POST['nro_ot']) && isset($_FILES['file']))
 	{
 		$nombre_archivo = $_FILES['file']['name'];
@@ -62,8 +63,14 @@ if (isset($_POST['submitted'])) {
     	}
 
 	}
-	//Cambio de estado.    
-	if(isset($_POST['nro_ot']))
+
+
+	$rs = mysql_query("SELECT `estado` FROM `historial_ot` WHERE `orden_de_trabajo_idorden_de_trabajo`=".$_POST['nro_ot']." AND `termino` IS NULL") or die(mysql_error());
+	$row = mysql_fetch_row($rs);
+	$estado_actual = $row[0];
+
+	//Cambio de estado. Si está en estado EJECUCIÓN no cambia de estado.
+	if(isset($_POST['nro_ot']) && $estado_actual == 'GENERACIÓN OT')
 	{
 		$nro_ot = $_POST['nro_ot'];
 		//Nuevo estado
@@ -96,9 +103,9 @@ if (isset($_POST['submitted'])) {
 }
 	
     //Parametro obtenido del combobox
-         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`
+         $sql= "SELECT `idorden_de_trabajo`, `nombre`, `apellido`, `anexo`, `ciudad`, `faena`, `area`, `tipo_ot`, `subtipo_ot`, `descripcion`, `observaciones`, `evaluacion_tecnica`, `estado`
            FROM `orden_de_trabajo`, `historial_ot` 
-           WHERE  `estado` = 'GENERACIÓN OT' AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
+           WHERE  (`estado` = 'GENERACIÓN OT' || `estado` = 'EJECUCIÓN') AND `idorden_de_trabajo` = `orden_de_trabajo_idorden_de_trabajo`  AND `termino` IS NULL " ;    
 
    //echo $sql."<br>";
 
@@ -150,7 +157,7 @@ if (isset($_POST['submitted'])) {
 	        <td><?php echo $ot[$i]['subtipo_ot']; ?></td>
 	        <td><?php echo $ot[$i]['descripcion']; ?></td>
 	        <td><?php echo $ot[$i]['observaciones']; ?></td>
-	        <td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >descargar</a>"; ?></td>        
+	        <td><?php if(isset($ot[$i]['evaluacion_tecnica'])) echo "<a href='../../public_html/upload/archivos/".$ot[$i]['evaluacion_tecnica']."' >".$ot[$i]['evaluacion_tecnica']."</a>"; ?></td>        
 	 </tr>
     <?php
              endfor;

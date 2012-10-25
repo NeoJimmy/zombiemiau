@@ -97,7 +97,7 @@ if (isset($_GET['nro_ot']) && $_GET['nro_ot']!="ninguno") :
 		$objPHPExcel->getActiveSheet()->setCellValue('I7', 'Subtipo');
 		$objPHPExcel->getActiveSheet()->setCellValue('J7', 'Descripción');
 		$objPHPExcel->getActiveSheet()->setCellValue('K7', 'Observaciones');
-		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'Observaciones');
+		$objPHPExcel->getActiveSheet()->setCellValue('L7', 'Nro OTT');
 		
 		//Propiedades de la cabecera de la tabla materiales
 		$objPHPExcel->getActiveSheet()->getStyle('B7:L7')->applyFromArray(
@@ -127,7 +127,7 @@ if (isset($_GET['nro_ot']) && $_GET['nro_ot']!="ninguno") :
 			$objPHPExcel->getActiveSheet()->setCellValue('I'.$index, $ot[$i]['subtipo_ot']);
 			$objPHPExcel->getActiveSheet()->setCellValue('J'.$index, $ot[$i]['descripcion']);
 			$objPHPExcel->getActiveSheet()->setCellValue('K'.$index, $ot[$i]['observaciones']);
-			$objPHPExcel->getActiveSheet()->setCellValue('L'.$index, $ot[$i]['observaciones']);
+			$objPHPExcel->getActiveSheet()->setCellValue('L'.$index, $ot[$i]['nro_ott']);
 			$index++;
  		endfor;
 
@@ -210,7 +210,7 @@ if (isset($_GET['nro_ot']) && $_GET['nro_ot']!="ninguno") :
 		
 		// Redirect output to a client’s web browser (Excel2007)
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment;filename="reporte_ot.xlsx"');
+		header('Content-Disposition: attachment;filename="reporte_nro.xlsx"');
 		header('Cache-Control: max-age=0');
 		
 		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
