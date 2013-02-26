@@ -173,6 +173,7 @@ mysql_query("SET NAMES 'utf8'");
 		        }
 		    ?>
 		    </select>&ensp;
+		    <p><label>Subtipo de OT:</label>
 		    <select id="child2" name="subtipo">
    		    <?php
 		        $query="SELECT tipo, subtipo FROM tipo_ot";

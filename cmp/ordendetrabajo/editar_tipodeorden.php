@@ -25,7 +25,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
 
 <div id="content">
 
-<?
+<?php
 include('../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
@@ -63,12 +63,12 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `tipo_ot` WHERE `idtipo_ot
 <br>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-	<p><label><b>Tipo:</b></label><input type='text' name='tipo' value='<?= stripslashes($row['tipo']) ?>' class='required'><br>
-	<p><label><b>Subtipo:</b></label><input type='text' name='subtipo' value='<?= stripslashes($row['subtipo']) ?>' class='required'><br>
+	<p><label><b>Tipo:</b></label><input type='text' name='tipo' value='<?php echo stripslashes($row['tipo']) ?>' class='required'><br>
+	<p><label><b>Subtipo:</b></label><input type='text' name='subtipo' value='<?php echo stripslashes($row['subtipo']) ?>' class='required'><br>
 <p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
-<? } ?>
+<?php } ?>
 
 </div>
 

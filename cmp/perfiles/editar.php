@@ -27,7 +27,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 
 <div id="content">
 
-<?
+<?php
 include('../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
@@ -52,12 +52,17 @@ WHERE `idperfil` = '$idperfil' ";
 $result=mysql_query($sql);
 if(!$result){
     echo "Error al hacer UPDATE";
-    echo "<a href='admin_perfiles.php' title='Administrar Perfiles'>volver a Perfiles</a><br /><br />";
+    echo "<a href='admin_perfiles.php' title='Administrar Perfiles'>volver a Perfiles</a><br><br>";
     exit();
 }
-
-echo (mysql_affected_rows()) ? "Fila Editada.<br />" : "Sin cambios. <br />";
-echo "<a href='admin_perfiles.php' title='Administrar Perfiles'>volver a Perfiles</a><br />";
+?>
+<div class="alert alert-success">
+<?php
+echo (mysql_affected_rows()) ? "Fila Editada.<br>" : "Sin cambios. <br>";
+?>
+</div>
+<?php
+echo "<a href='admin_perfiles.php' title='Administrar Perfiles'>volver a Perfiles</a><br>";
 
 }
 
@@ -68,13 +73,14 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `perfil` WHERE `idperfil` 
 <h2>Editar perfil</h2>
 <form id='formEditar' action='' method='POST'>
 <br>
-<p><b>Nombre:</b><br><input type='text' name='nombre' value='<?= stripslashes($row['nombre']) ?>' class="required">
-<p><b>Descripci&oacute;n</b><br><textarea name="descripcion" rows="5" cols="40" class="required">
-<?= stripslashes($row['descripcion']) ?>
+<p><b>Nombre:</b><br>
+<input type='text' name='nombre' value='<?php echo stripslashes($row['nombre']) ?>' class="required">
+<p><b>Descripci&oacute;n</b><br>
+<textarea name="descripcion" rows="5" cols="40" class="required"><?php echo stripslashes($row['descripcion']) ?>
 </textarea>
 <p><input type='submit' class="btn btn-primary" value='Editar'><input type='hidden' value='1' name='submitted'>
 </form>
-<? } ?>
+<?php } ?>
 
 </div>
 

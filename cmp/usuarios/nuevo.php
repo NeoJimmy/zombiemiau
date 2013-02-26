@@ -8,16 +8,16 @@
     <script type="text/javascript">
     //validar rut
     jQuery.validator.addMethod("rut", function(value, element) {
-                return this.optional(element) || /^\d{1,2}\d{3}\d{3}[-][0-9kK]{1}$/.test(value);
-	}, "Por favor ingrese un rut valido."
+           return this.optional(element) || /^\d{1,2}\d{3}\d{3}[-][0-9kK]{1}$/.test(value);
+	   }, "Por favor ingrese un rut valido."
     );
     </script>
 
     <!-- validamos el formulario -->
     <script type="text/javascript">
-    $(document).ready(function(){
-    $("#myform").validate();
-    });
+        $(document).ready(function(){
+            $("#myform").validate();
+        });
     </script>
 </head>
 <body>
@@ -34,7 +34,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin'))
 
 <div id="content">
 
-    <?
+    <?php
     include('../include/conect.php');
 
     $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);

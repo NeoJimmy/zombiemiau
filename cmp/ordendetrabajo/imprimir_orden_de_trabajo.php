@@ -27,7 +27,7 @@ mysql_select_db($config['db_database']);
 mysql_query("SET NAMES 'utf8'");
 
 ?>
-<h2>B&uacute;squeda de Orden de trabajo por n&uacute;mero</h2>
+<h2>Reporte de &oacute;rdenes de trabajo pendientes</h2>
 
 <form id='form' action='' method='POST'>
     <table id="clear" style="width:100%;">
@@ -182,8 +182,7 @@ if (isset($_POST['submitted'])) {
    
 <?php endif; ?>
     </div><!-- overflow -->
-<input class="btn" type="button" value="Descargar Reporte" onclick="location.href='reporte_numero.php?nro_ot=<?php echo $_POST['nro_ot']; ?>'">
-<input class="btn" type="button" value="Reporte Imprimible" onclick="location.href='reporte_imprimible.php?nro_ot=<?php echo $_POST['nro_ot']; ?>'">  
+<input class="btn" type="button" value="Imprimir orden" onclick="location.href='reporte_imprimible.php?nro_ot=<?php echo $_POST['nro_ot']; ?>'">  
     
 <?php
 }//submitted

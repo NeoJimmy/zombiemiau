@@ -25,7 +25,7 @@ if ( isset($_SESSION['usuario']) && ($_SESSION['usuario']['perfil'] == 'admin' )
 
 <div id="content">
 
-<?
+<?php
 include('../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
@@ -61,15 +61,12 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `faenas` WHERE `idfaenas` 
 <br>
 <h2>Editar faena</h2>
 <br>
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-	<p><label><b>Ciudad:</b></label><input type='text' name='ciudad' value='<?= stripslashes($row['ciudad']) ?>' class='required'><br>
-	<p><label><b>Faena:</b></label><input type='text' name='faena' value='<?= stripslashes($row['faena']) ?>' class='required'><br>
-
-<p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
+	<p><label><b>Ciudad:</b></label><input type='text' name='ciudad' value='<?php echo stripslashes($row['ciudad']) ?>' class='required'><br>
+	<p><label><b>Faena:</b></label><input type='text' name='faena' value='<?php echo stripslashes($row['faena']) ?>' class='required'><br>
+	<p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 </form>
-<? } ?>
+<?php } ?>
 
 </div>
 

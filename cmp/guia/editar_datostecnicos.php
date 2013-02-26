@@ -52,7 +52,7 @@ if ( isset($_SESSION['usuario']) && ( $_SESSION['usuario']['perfil'] == 'admin' 
 
 <div id="content">
 
-<?
+<?php
 include('../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
@@ -101,10 +101,8 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_datostecnicos` WHERE
 ?>
 
 <h2>Editar datos t&eacute;cnicos</h2>
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
 <form id='formEditar' action='' method='POST'>
-
-	<p><label><b>anexo:</b></label><input type='text' name='anexo' value='<?= stripslashes($row['anexo']) ?>' class='required'><br>
+	<p><label><b>anexo:</b></label><input type='text' name='anexo' value='<?php echo stripslashes($row['anexo']) ?>' class='required'><br>
     <p><label><b>tipo:</b></label>
 	<select id="parent" name='tipo'>
     <?php
@@ -140,20 +138,17 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_datostecnicos` WHERE
 	    }
 	?>
     </select><br>
-	<p><label><b>categor&iacute;a:</b></label><input type='text' name='categoria' value='<?= stripslashes($row['categoria']) ?>' class='required'><br>
-	<p><label><b>sap:</b></label><input type='text' name='sap' value='<?= stripslashes($row['sap']) ?>' class='required'><br>
+	<p><label><b>sap:</b></label><input type='text' name='sap' value='<?php echo stripslashes($row['sap']) ?>' class='required'><br>
 	<!--<input type="checkbox" name="status" value="1" checked />-->
 	<p><label><b>correo de voz:</b></label><input type="checkbox" name='correo_de_voz' value='1'><br>
-	<p><label><b>claves:</b></label><input type='text' name='claves' value='<?= stripslashes($row['claves']) ?>' class='required'><br>
-	<p><label><b>modelo:</b></label><input type='text' name='modelo' value='<?= stripslashes($row['modelo']) ?>' class='required'><br>
-	<p><label><b>serie:</b></label><input type='text' name='serie' value='<?= stripslashes($row['serie']) ?>' class='required'><br>
-	<p><label><b>mac:</b></label><input type='text' name='mac' value='<?= stripslashes($row['mac']) ?>' class='required'><br>
-	<p><label><b>switch-puerta:</b></label><input type='text' name='switch_puerta' value='<?= stripslashes($row['switch_puerta']) ?>' class='required'><br>		
-
+	<p><label><b>claves:</b></label><input type='text' name='claves' value='<?php echo stripslashes($row['claves']) ?>' class='required'><br>
+	<p><label><b>modelo:</b></label><input type='text' name='modelo' value='<?php echo stripslashes($row['modelo']) ?>' class='required'><br>
+	<p><label><b>serie:</b></label><input type='text' name='serie' value='<?php echo stripslashes($row['serie']) ?>' class='required'><br>
+	<p><label><b>mac:</b></label><input type='text' name='mac' value='<?php echo stripslashes($row['mac']) ?>' class='required'><br>
+	<p><label><b>switch-puerta:</b></label><input type='text' name='switch_puerta' value='<?php echo stripslashes($row['switch_puerta']) ?>' class='required'><br>		
 <p class="espacio-submit"><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
-<!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
-<? } ?>
+<?php } ?>
 
 </div>
 

@@ -25,7 +25,7 @@ if ( isset($_SESSION['usuario']) && $_SESSION['usuario']['perfil'] == 'admin' ):
 
 <div id="content">
 
-<?
+<?php
 include('../include/conect.php');
 
 $db_connection = mysql_connect($config['db_server'], $config['db_user'], $config['db_password']);
@@ -67,16 +67,16 @@ $row = mysql_fetch_array ( mysql_query("SELECT * FROM `guia_lugaresycargos` WHER
 <form id='formEditar' action='' method='POST'>
 	<fieldset>
 	<legend>Datos de la gu&iacute;a de personas</legend>
-	<p><b>anexo:</b><br><input type='text' name='anexo' value='<?= stripslashes($row['anexo']) ?>' class='required'></input>
-	<p><b>nombre:</b><br><input type='text' name='nombre' value='<?= stripslashes($row['nombre']) ?>' class='required'></input>
-    <p><b>unidad:</b><br><input type='text' name='unidad' value='<?= stripslashes($row['unidad']) ?>' class='required'></input>
-    <p><b>localidad:</b><br><input type='text' name='localidad' value='<?= stripslashes($row['localidad']) ?>' class='required'></input>
-    <p><b>centro de costo:</b><br><input type='text' name='centro_de_costo' value='<?= stripslashes($row['centro_de_costo']) ?>'  class='required'></input>
+	<p><b>anexo:</b><br><input type='text' name='anexo' value='<?php echo stripslashes($row['anexo']) ?>' class='required'></input>
+	<p><b>nombre:</b><br><input type='text' name='nombre' value='<?php echo stripslashes($row['nombre']) ?>' class='required'></input>
+    <p><b>unidad:</b><br><input type='text' name='unidad' value='<?php echo stripslashes($row['unidad']) ?>' class='required'></input>
+    <p><b>localidad:</b><br><input type='text' name='localidad' value='<?php echo stripslashes($row['localidad']) ?>' class='required'></input>
+    <p><b>centro de costo:</b><br><input type='text' name='centro_de_costo' value='<?php echo stripslashes($row['centro_de_costo']) ?>'  class='required'></input>
     <br>
 	<p><input class="btn btn-primary" type='submit' value='Editar'><input type='hidden' value='1' name='submitted'>
 <!--/////////////////////////////////////////////////////////////////////////////////////-->
 </form>
-<? } ?>
+<?php } ?>
 
 </div>
 
